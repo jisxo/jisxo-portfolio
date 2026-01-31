@@ -1,0 +1,23 @@
+@media print {
+    @page {
+        margin: 0;
+        size: auto;
+    }
+
+    :global(body) {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    :global(.no-print) {
+        display: none !important;
+    }
+
+    :global(.resume-container) {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 20mm !important;
+    }
+}
