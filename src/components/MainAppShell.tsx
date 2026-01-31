@@ -1,0 +1,91 @@
+'use client';
+
+import { AppShell, Burger, Group, Text, UnstyledButton, useMantineColorScheme, ActionIcon, Container, rem } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import Link from 'next/link';
+import { IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
+import { usePathname } from 'next/navigation';
+import classes from './MainAppShell.module.css';
+
+export function MainAppShell({ children }: { children: React.ReactNode }) {
+    const [opened, { toggle }] = useDisclosure();
+    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+    const pathname = usePathname();
+
+    const links = [
+        { link: '/', label: 'Home' },
+        { link: '/projects', label: 'Projects' },
+        { link: '/about', label: 'About' },
+    ];
+
+    const mainLinks = links.map((link) => (
+        <Link
+            key={link.label}
+            href={link.link}
+            className={`${classes.link} ${pathname === link.link ? classes.linkActive : ''}`}
+            onClick={() => { if (opened) toggle(); }} // Close menu on click
+        >
+            {link.label}
+        </Link>
+    ));
+
+    return (
+        <AppShell
+            header={{ height: 60 }}
+            navbar={{
+                width: 300,
+                breakpoint: 'sm',
+                collapsed: { desktop: true, mobile: !opened },
+            }}
+            padding="md"
+        >
+            <AppShell.Header>
+                <Container size="lg" className={classes.innerHeader}>
+                    <Group gap={5} visibleFrom="sm">
+                        <Text size="xl" fw={700} variant="gradient" gradient={{ from: 'blue', to: 'cyan', deg: 90 }}>
+                            DevPortfolio
+                        </Text>
+                    </Group>
+
+                    <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+
+                    {/* Logo for mobile centered or left */}
+                    <Group gap={5} hiddenFrom="sm">
+                        <Text size="lg" fw={700}>DevPortfolio</Text>
+                    </Group>
+
+                    <Group gap={5} visibleFrom="sm">
+                        {mainLinks}
+                    </Group>
+
+                    <ActionIcon
+                        onClick={() => toggleColorScheme()}
+                        variant="default"
+                        size="lg"
+                        aria-label="Toggle color scheme"
+                    >
+                        {colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
+                    </ActionIcon>
+                </Container>
+            </AppShell.Header>
+
+            <AppShell.Navbar p="md">
+                {mainLinks}
+                <Group mt="xl">
+                    <ActionIcon component="a" href="https://github.com" target="_blank" size="lg" variant="subtle" color="gray">
+                        <IconBrandGithub size={20} />
+                    </ActionIcon>
+                    <ActionIcon component="a" href="https://linkedin.com" target="_blank" size="lg" variant="subtle" color="blue">
+                        <IconBrandLinkedin size={20} />
+                    </ActionIcon>
+                </Group>
+            </AppShell.Navbar>
+
+            <AppShell.Main>
+                <Container size="lg">
+                    {children}
+                </Container>
+            </AppShell.Main>
+        </AppShell>
+    );
+}

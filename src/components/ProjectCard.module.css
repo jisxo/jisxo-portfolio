@@ -1,0 +1,11 @@
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--mantine-shadow-lg);
+    }
+}

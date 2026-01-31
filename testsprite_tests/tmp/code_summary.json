@@ -1,0 +1,48 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "Next.js",
+        "React",
+        "Mantine",
+        "CSS Modules",
+        "PostCSS"
+    ],
+    "features": [
+        {
+            "name": "App Shell & Layout",
+            "description": "Main application layout including header, navigation, and footer using App Shell pattern.",
+            "files": [
+                "src/app/layout.tsx",
+                "src/components/MainAppShell.tsx",
+                "src/components/MainAppShell.module.css"
+            ]
+        },
+        {
+            "name": "Landing Page",
+            "description": "Home page featuring a Hero section and Skills overview.",
+            "files": [
+                "src/app/page.tsx",
+                "src/components/Hero.tsx",
+                "src/components/Hero.module.css",
+                "src/components/Skills.tsx",
+                "src/components/Skills.module.css"
+            ]
+        },
+        {
+            "name": "Projects Section",
+            "description": "Projects listing page and individual project card components.",
+            "files": [
+                "src/app/projects/page.tsx",
+                "src/components/ProjectCard.tsx",
+                "src/components/ProjectCard.module.css"
+            ]
+        },
+        {
+            "name": "About Section",
+            "description": "Static about page.",
+            "files": [
+                "src/app/about/page.tsx"
+            ]
+        }
+    ]
+}

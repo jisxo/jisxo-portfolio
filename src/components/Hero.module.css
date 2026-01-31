@@ -1,0 +1,40 @@
+.hero {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    max-width: 800px;
+}
+
+.title {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    font-family: var(--mantine-font-family);
+    /* Fluid typography: 32px min, 5vw scalable, 48px max */
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 900;
+    line-height: 1.2;
+    word-break: keep-all;
+    /* Prevent breaking inside phrases */
+
+    @media (max-width: 48em) {
+        font-size: 28px;
+        /* Fallback for very small screens if clamp behaves oddly */
+    }
+}
+
+.highlight {
+    color: var(--mantine-primary-color-filled);
+    position: relative;
+    border-radius: var(--mantine-radius-sm);
+    padding: 2px 4px;
+    margin: 0;
+    background-color: light-dark(var(--mantine-color-blue-1), rgba(var(--mantine-color-blue-9), 0.3));
+}

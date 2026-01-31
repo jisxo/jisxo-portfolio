@@ -1,0 +1,61 @@
+프론트엔드 디버깅 체크리스트 (Next.js + Mantine)
+TestSprite를 사용하지 않고, 수동으로 혹은 기본 개발자 도구를 사용하여 디버깅해야 할 항목들을 정리했습니다. 현재 프로젝트 구조(Next.js App Router, Mantine UI, CSS Modules)를 기반으로 작성했습니다.
+
+1. 환경 및 설정 (Environment & Config)
+가장 기본이 되는 설정 파일들이 올바르게 구성되어 있는지 확인합니다.
+
+package.json:
+dependencies에 @mantine/core, @mantine/hooks, next, react, react-dom 버전이 서로 호환되는지 확인 (현재 next: 16.1.6, react: 19.2.3 확인됨).
+devDependencies에 typescript, eslint 등이 포함되어 있는지 확인.
+next.config.ts:
+빌드 에러를 유발할 수 있는 잘못된 설정이 있는지 확인.
+postcss.config.mjs:
+Mantine은 PostCSS 설정을 필요로 합니다. postcss-preset-mantine, postcss-simple-vars 설정이 올바른지 확인.
+터미널 에러:
+npm run dev 실행 시 터미널에 붉은색 에러나 노란색 경고(Warning)가 뜨는지 확인.
+2. 라우팅 및 페이지 구조 (Routing & Structure)
+src/app 디렉토리의 구조가 Next.js 13+ App Router 규칙을 따르는지 점검합니다.
+
+src/app/layout.tsx:
+<html> 및 <body> 태그가 올바르게 있는지.
+MantineProvider: Mantine UI가 정상 작동하려면 여기서 앱 전체를 감싸고 있어야 합니다. CSS import (@mantine/core/styles.css)가 포함되어 있는지 확인.
+src/app/page.tsx: 메인 페이지가 에러 없이 렌더링되는지.
+src/app/about/page.tsx, src/app/projects/page.tsx: 각 서브 페이지 라우팅이 정상 작동하는지 (URL 직접 접속 및 링크 이동).
+3. 컴포넌트 렌더링 (Component Rendering)
+src/components 내의 주요 컴포넌트들이 정상적으로 화면에 표시되는지 확인합니다.
+
+MainAppShell.tsx:
+헤더(Header), 네비게이션(Navbar), 푸터(Footer) 레이아웃이 깨지지 않는지.
+반응형 동작 (모바일에서 햄버거 메뉴 작동 여부).
+Hero.tsx:
+초기 로딩 시 레이아웃 시프트(CLS)가 없는지.
+이미지나 큰 텍스트가 정상적으로 로드되는지.
+ProjectCard.tsx:
+프로젝트 데이터(제목, 설명, 태그)가 props로 잘 전달되어 렌더링되는지.
+카드의 그리드 레이아웃이 깨지지 않는지.
+Skills.tsx:
+스킬 목록이 의도한 디자인대로 정렬되는지.
+4. 스타일링 (Styling - CSS Modules & Mantine)
+스타일 충돌이나 적용 실패를 확인합니다.
+
+CSS Modules:
+*.module.css 파일들이 컴포넌트에 올바르게 import 되고 적용되었는지.
+클래스 이름 충돌이나 스타일 덮어쓰기 문제가 없는지.
+Mantine Styles:
+Mantine 컴포넌트(Button, Container, Grid 등)의 스타일이 테마(theme) 설정과 일치하는지.
+Dark Mode/Light Mode 전환 시 색상이 올바르게 변하는지.
+5. 브라우저 개발자 도구 (Browser DevTools)
+브라우저에서 직접 확인해야 할 항목들입니다.
+
+Console 탭:
+React Hydration Error (서버와 클라이언트의 HTML 불일치)가 뜨는지 확인. (Next.js에서 흔하게 발생)
+Key prop warning (리스트 렌더링 시 key 누락) 확인.
+Mantine 관련 스타일 경고 확인.
+Network 탭:
+이미지, 폰트, CSS 파일들이 404 에러 없이 로드되는지 (Status 200).
+Elements 탭:
+DOM 구조가 불필요하게 깊거나(<div> soup), 깨진 태그가 없는지 시각적으로 확인.
+6. 인터랙션 및 기능 (Interaction)
+링크 이동: 모든 Link 컴포넌트가 올바른 href를 가리키는지.
+버튼 클릭: 버튼 클릭 시 연결된 핸들러가 실행되는지.
+폼(Form): (만약 있다면) 입력값이 상태(State)에 잘 반영되는지.
