@@ -2,6 +2,7 @@
 
 import { Container, Title, Text, Group, Stack, Badge, Divider, Button, Box, ThemeIcon, List, Paper, Grid } from '@mantine/core';
 import { IconMail, IconBrandGithub, IconWorld, IconPrinter, IconPhone, IconMapPin, IconBrandLinkedin } from '@tabler/icons-react';
+import classes from './resume.module.css';
 
 export default function ResumePage() {
     const handlePrint = () => {
@@ -97,11 +98,19 @@ export default function ResumePage() {
                 {/* Work Experience */}
                 <SectionTitle title="Work Experience" />
                 <Stack gap="xl" mb="xl">
-                    {/* CSLEE */}
+                    {/* CSLEE Freelance */}
+                    <ExperienceItem
+                        company="씨에스리 (CSLEE)"
+                        role="AI엔지니어링사업부 / 프리랜서"
+                        period="2025.04 - 2025.10"
+                        summary="SecuXper AI 솔루션 운영 및 유지보수"
+                    />
+
+                    {/* CSLEE Full-time */}
                     <ExperienceItem
                         company="씨에스리 (CSLEE)"
                         role="AI엔지니어링사업부 선임 / Data Engineer"
-                        period="2021.03 - 2025.10 (4년 7개월)"
+                        period="2021.03 - 2025.02 (4년)"
                         summary="보안 관제 도메인에 특화된 데이터 엔지니어링 및 이상징후 탐지 파이프라인 구축"
                     >
                         <List size="sm" spacing={4} withPadding listStyleType="disc">
@@ -166,27 +175,10 @@ export default function ResumePage() {
                 <Group justify="space-between" align="flex-start">
                     <div>
                         <Text fw={700} size="sm">해성국제컨벤션고등학교</Text>
-                        <Text size="sm">국제회의 유치관리과</Text>
                     </div>
                     <Text size="sm" c="dimmed">2011.03 - 2014.02</Text>
                 </Group>
-
             </Paper>
-
-            <style jsx global>{`
-                @media print {
-                    @page { margin: 0; size: auto; }
-                    body { background: white !important; -webkit-print-color-adjust: exact; }
-                    .no-print { display: none !important; }
-                    .resume-container {
-                        box-shadow: none !important;
-                        margin: 0 !important;
-                        width: 100% !important;
-                        min-height: auto !important;
-                        padding: 20mm !important;
-                    }
-                }
-            `}</style>
         </Box>
     );
 }
