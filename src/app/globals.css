@@ -4,3 +4,28 @@
 html {
    scroll-behavior: smooth;
 }
+
+@media print {
+
+   /* Hide Mantine AppShell Header and Navbar */
+   .mantine-AppShell-header,
+   .mantine-AppShell-navbar,
+   header,
+   nav,
+   .no-print {
+      display: none !important;
+   }
+
+   /* Reset body margins and background */
+   body {
+      margin: 0;
+      padding: 0;
+      background: white;
+   }
+
+   /* Ensure the main content takes full width */
+   .mantine-AppShell-main {
+      padding: 0 !important;
+      margin: 0 !important;
+   }
+}

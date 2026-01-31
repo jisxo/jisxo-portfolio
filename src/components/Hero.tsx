@@ -1,7 +1,6 @@
 'use client';
 
 import { Container, Title, Text, Button, Group } from '@mantine/core';
-import { IconArrowDown, IconBrandGithub, IconDownload } from '@tabler/icons-react';
 import classes from './Hero.module.css';
 
 export function Hero() {
@@ -23,10 +22,10 @@ export function Hero() {
                         </Text>
 
                         <Group mt={30}>
-                            <Button radius="xl" size="md" rightSection={<IconArrowDown size={18} />} className={classes.control} component="a" href="#projects">
+                            <Button radius="xl" size="md" className={classes.control} component="a" href="#projects">
                                 프로젝트 보기
                             </Button>
-                            <Button variant="default" radius="xl" size="md" leftSection={<IconDownload size={18} />} className={classes.control} component="a" href="/resume">
+                            <Button variant="default" radius="xl" size="md" className={classes.control} component="a" href="/resume">
                                 이력서 보기
                             </Button>
                         </Group>

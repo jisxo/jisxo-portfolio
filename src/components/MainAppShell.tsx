@@ -86,9 +86,13 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             </AppShell.Navbar>
 
             <AppShell.Main>
-                <Container size="lg">
-                    {children}
-                </Container>
+                {pathname?.includes('/resume') ? (
+                    children
+                ) : (
+                    <Container size="lg">
+                        {children}
+                    </Container>
+                )}
             </AppShell.Main>
         </AppShell>
     );
