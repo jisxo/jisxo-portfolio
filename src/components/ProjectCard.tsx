@@ -40,6 +40,8 @@ export function ProjectCard({ title, description, image, images, tags, githubUrl
                                     fit="contain"
                                     h="auto"
                                     mah={400} // Restrict max height as requested
+                                    bg="white"
+                                    p="sm"
                                 />
                                 {img.caption && (
                                     <Text size="sm" c="dimmed" ta="center" mt="xs">
@@ -106,7 +108,15 @@ export function ProjectCard({ title, description, image, images, tags, githubUrl
                 </Group>
             </Modal>
 
-            <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.card}>
+            <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                className={classes.card}
+                onClick={open}
+                style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+            >
                 <Card.Section>
                     <Image
                         src={image}
@@ -135,7 +145,6 @@ export function ProjectCard({ title, description, image, images, tags, githubUrl
 
                 <Group mt="auto">
                     <Button
-                        onClick={open}
                         variant="light"
                         color="blue"
                         fullWidth

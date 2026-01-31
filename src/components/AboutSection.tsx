@@ -3,9 +3,9 @@
 import { Container, Title, Text, Timeline, ThemeIcon, Card, Group, Badge } from '@mantine/core';
 import { IconBriefcase, IconSchool, IconCertificate, IconGitBranch } from '@tabler/icons-react';
 
-export default function AboutPage() {
+export function AboutSection() {
     return (
-        <Container size="lg" py="xl">
+        <Container size="lg" py="xl" id="about">
             <Title order={1} mb="lg">About Me</Title>
 
             <Text size="lg" mb="xl" style={{ maxWidth: 800 }}>
@@ -34,7 +34,6 @@ export default function AboutPage() {
                         <Group gap={6} mt={8}>
                             <Badge size="xs" variant="default">Python</Badge>
                             <Badge size="xs" variant="default">Airflow</Badge>
-                            <Badge size="xs" variant="default">Spark</Badge>
                             <Badge size="xs" variant="default">RPA</Badge>
                         </Group>
                     </Timeline.Item>

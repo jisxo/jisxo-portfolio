@@ -1,2 +1,6 @@
 /* Global styles are handled by Mantine.
    Add custom global overrides here if absolutely necessary. */
+
+html {
+   scroll-behavior: smooth;
+}

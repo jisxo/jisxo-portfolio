@@ -14,8 +14,8 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
 
     const links = [
         { link: '/', label: 'Home' },
-        { link: '/projects', label: 'Projects' },
-        { link: '/about', label: 'About' },
+        { link: '#projects', label: 'Projects' },
+        { link: '#about', label: 'About' },
     ];
 
     const mainLinks = links.map((link) => (
@@ -42,16 +42,20 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             <AppShell.Header>
                 <Container size="lg" className={classes.innerHeader}>
                     <Group gap={5} visibleFrom="sm">
-                        <Text size="xl" fw={700} variant="gradient" gradient={{ from: 'blue', to: 'cyan', deg: 90 }}>
-                            DevPortfolio
-                        </Text>
+                        <Link href="/" style={{ textDecoration: 'none' }}>
+                            <Text size="xl" fw={700} variant="gradient" gradient={{ from: 'blue', to: 'cyan', deg: 90 }} style={{ cursor: 'pointer' }}>
+                                Jiseo.Dev
+                            </Text>
+                        </Link>
                     </Group>
 
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
                     {/* Logo for mobile centered or left */}
                     <Group gap={5} hiddenFrom="sm">
-                        <Text size="lg" fw={700}>DevPortfolio</Text>
+                        <Link href="/" style={{ textDecoration: 'none' }}>
+                            <Text size="lg" fw={700} c="black">Jiseo.Dev</Text>
+                        </Link>
                     </Group>
 
                     <Group gap={5} visibleFrom="sm">

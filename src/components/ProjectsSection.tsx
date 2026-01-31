@@ -1,3 +1,5 @@
+'use client';
+
 import { Container, Title, Text, SimpleGrid } from '@mantine/core';
 import { ProjectCard } from '@/components/ProjectCard';
 
@@ -80,14 +82,9 @@ const projects = [
     },
 ];
 
-export const metadata = {
-    title: 'Projects | 정지서 Portfolio',
-    description: 'Data Engineering & Pipeline Projects',
-};
-
-export default function ProjectsPage() {
+export function ProjectsSection() {
     return (
-        <Container size="lg" py="xl">
+        <Container size="lg" py="xl" id="projects">
             <Title order={1} mb="sm">My Projects</Title>
             <Text c="dimmed" mb={50}>
                 데이터 엔지니어링 및 파이프라인 구축 프로젝트 경험입니다. (Click 'View Details' for more)
