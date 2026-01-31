@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://jisxo-portfolio.netlify.app", // Assuming Netlify URL based on previous context, or use site URL if known. Actually better to omit domain if not sure, but for OG image to work usually absolute URL is preferred or relative is handled by next. Let's use relative for image but full URL is better. Let's assume production URL is needed. For now Next.js handles relative paths in metadataBase. I will add metadataBase later if needed, but for now relative path works if metadataBase is set. I'll stick to basic relative path for image.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Data Engineer Jiseo Jeong Portfolio Thumbnail",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "정지서 | Data Engineer Portfolio",
     description: "데이터의 흐름을 설계하고 가치를 만드는 Data Engineer 정지서입니다.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 };
 
