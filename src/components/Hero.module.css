@@ -38,3 +38,13 @@
     margin: 0;
     background-color: light-dark(var(--mantine-color-blue-1), rgba(var(--mantine-color-blue-9), 0.3));
 }
+
+.description {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    line-height: 1.6;
+}
+
+.subDescription {
+    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-3));
+    line-height: 1.6;
+}

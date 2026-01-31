@@ -39,9 +39,9 @@ const skillsData = [
 
 export function Skills() {
     const cards = skillsData.map((category) => (
-        <Card key={category.title} shadow="sm" radius="md" className={classes.card} padding="xl">
+        <Card key={category.title} shadow="sm" radius="md" withBorder className={classes.card} padding="xl">
             <Group justify="space-between" mb="xs">
-                <Text fz="lg" fw={700} className={classes.cardTitle}>
+                <Text fz="lg" fw={700} className={classes.cardTitle} c="light-dark(var(--mantine-color-black), var(--mantine-color-white))">
                     {category.title}
                 </Text>
                 <ThemeIcon variant="light" color={category.color} size="lg" radius="md">
