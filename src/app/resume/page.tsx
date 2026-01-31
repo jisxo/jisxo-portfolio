@@ -2,17 +2,30 @@
 
 import { Container, Title, Text, Group, Stack, Badge, Divider, Button, Box, ThemeIcon, List, Paper, Grid } from '@mantine/core';
 import { IconMail, IconBrandGithub, IconWorld, IconPrinter, IconPhone, IconMapPin, IconBrandLinkedin } from '@tabler/icons-react';
+import { useRouter } from 'next/navigation';
 import classes from './resume.module.css';
 
 export default function ResumePage() {
-    const handlePrint = () => {
+    const router = useRouter();
+
+    const handlePrint = (e: React.MouseEvent) => {
+        e.stopPropagation();
         window.print();
     };
 
+    const handleBackgroundClick = () => {
+        router.push('/');
+    };
+
     return (
-        <Box bg="gray.0" py="xl" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box
+            bg="gray.0"
+            py="xl"
+            style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'zoom-out' }}
+            onClick={handleBackgroundClick}
+        >
             {/* Print Button - Hidden when printing */}
-            <Group mb="lg" className="no-print">
+            <Group mb="lg" className="no-print" onClick={(e) => e.stopPropagation()}>
                 <Button
                     leftSection={<IconPrinter size={20} />}
                     onClick={handlePrint}
@@ -40,12 +53,14 @@ export default function ResumePage() {
                 p={50}
                 className="resume-container"
                 bg="white"
+                onClick={(e) => e.stopPropagation()}
                 style={{
                     width: '210mm',
                     minHeight: '297mm', // A4 height
                     margin: '0 auto',
                     color: '#000', // Force black text for print/readability
                     boxSizing: 'border-box',
+                    cursor: 'auto'
                 }}
             >
                 {/* Header */}

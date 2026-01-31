@@ -1,12 +1,13 @@
 @media print {
     @page {
-        margin: 20mm 0;
+        margin: 10mm;
         size: auto;
     }
 
     :global(body) {
         background: white !important;
         -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     :global(.no-print) {
@@ -18,6 +19,7 @@
         margin: 0 !important;
         width: 100% !important;
         min-height: auto !important;
-        padding: 20mm !important;
+        padding: 0 !important;
+        /* Let @page handle margins */
     }
 }
