@@ -26,8 +26,8 @@ export function Hero() {
                             <Button radius="xl" size="md" rightSection={<IconArrowDown size={18} />} className={classes.control} component="a" href="#projects">
                                 프로젝트 보기
                             </Button>
-                            <Button variant="default" radius="xl" size="md" leftSection={<IconDownload size={18} />} className={classes.control} component="a" href="/resume.pdf" target="_blank">
-                                이력서 다운로드
+                            <Button variant="default" radius="xl" size="md" leftSection={<IconDownload size={18} />} className={classes.control} component="a" href="/resume">
+                                이력서 보기
                             </Button>
                         </Group>
                     </div>
