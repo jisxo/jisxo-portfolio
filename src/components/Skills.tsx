@@ -27,7 +27,7 @@ const skillsData = [
         title: 'Data Science & AI',
         icon: IconChartBar,
         color: 'grape',
-        skills: ['Tensorflow', 'Pandas', 'NumPy (Python Lib)'],
+        skills: ['Tensorflow', 'Pandas', 'NumPy'],
     },
     {
         title: 'Database',

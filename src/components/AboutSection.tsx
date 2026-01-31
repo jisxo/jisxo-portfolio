@@ -31,7 +31,7 @@ export function AboutSection() {
                         <Text size="sm" mt={4}>
                             - L사 보안 로그 분석 및 지능화 시스템 구축: 이기종 로그 통합 및 이상징후 탐지 파이프라인 구축<br />
                             - 유통사 데이터 분석 및 컨설팅: 공공/유통 데이터 분석 및 인사이트 도출<br />
-                            - 신지모루 RPA 개발: 반복 업무 자동화 RPA 개발
+                            - 핸드폰 액세서리 유통사 RPA 개발: 반복 업무 자동화 RPA 개발
                         </Text>
                         <Group gap={6} mt={8}>
                             <Badge size="xs" variant="default">Python</Badge>

@@ -101,13 +101,13 @@ export default function ResumePage() {
                     <Grid.Col span={9}><Text size="sm">Python, SQL, Shell Script</Text></Grid.Col>
 
                     <Grid.Col span={3}><Text size="sm" fw={700}>Data Engineering</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">Apache Airflow, Spark, Kafka (Concept), ETL Pipelines</Text></Grid.Col>
+                    <Grid.Col span={9}><Text size="sm">Apache Airflow, ETL Pipelines</Text></Grid.Col>
 
                     <Grid.Col span={3}><Text size="sm" fw={700}>Infrastructure</Text></Grid.Col>
                     <Grid.Col span={9}><Text size="sm">Docker, Linux, CI/CD (Basic)</Text></Grid.Col>
 
                     <Grid.Col span={3}><Text size="sm" fw={700}>Web & Others</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">React, Next.js, RPA (Custom/UiPath)</Text></Grid.Col>
+                    <Grid.Col span={9}><Text size="sm">React, RPA</Text></Grid.Col>
                 </Grid>
 
                 {/* Work Experience */}
@@ -144,7 +144,7 @@ export default function ResumePage() {
                         company="경찰청 치안빅데이터정책담당관실"
                         role="인턴"
                         period="2019.09 - 2020.02"
-                        summary="치안 데이터 분석 보조 및 시각화, 공공 데이터 활용 분석 보고서 작성 지원"
+                        summary="치안 데이터 분석 및 시각화"
                     />
                 </Stack>
 
@@ -154,7 +154,7 @@ export default function ResumePage() {
                     <ProjectItem
                         title="1. L사, 보안 로그 분석 및 이상징후 탐지 파이프라인 구축"
                         role="Data Engineer (수집/전처리/EDA)"
-                        desc="사외 발송 메일 로그 수집/전처리 100% 자동화, 다차원 EDA를 통한 이상징후 탐지 룰(Rule) 도출"
+                        desc="사외 발송 메일 로그 수집/전처리 100% 자동화, 다각도의 EDA를 통한 이상징후 탐지 룰(Rule) 도출"
                     />
                     <ProjectItem
                         title="2. L사, 이기종 보안 로그 통합 및 이상징후 탐지 파이프라인 구축"
@@ -164,17 +164,17 @@ export default function ResumePage() {
                     <ProjectItem
                         title="3. L사, 내부자 위협 탐지 및 비정형 텍스트 파이프라인 구축"
                         role="Data Engineer (Airflow/NLP)"
-                        desc="메신저/이메일 비정형 텍스트 분석 자동화, File Partitioning으로 대용량 처리 병목 해결"
+                        desc="메신저/이메일 비정형 텍스트 분석 자동화, 대용량 JSON 파일을 분할하여 처리하는 방식으로 대용량 처리 병목 해결"
                     />
                     <ProjectItem
                         title="4. 아마존 글로벌 광고 비딩 및 키워드 관리 RPA 시스템 구축"
                         role="Full Stack Developer"
-                        desc="Python/Airflow 활용 글로벌 10개국 광고 운영 자동화, 월 150시간 업무 → 2.5시간으로 98% 단축"
+                        desc="Python/Airflow 활용 글로벌 10개국 광고 운영 자동화, 150시간 업무 → 2.5시간으로 98% 단축"
                     />
                     <ProjectItem
-                        title="5. 서울시 상권 분석 및 음식점 랭킹 솔루션 DW 구축"
+                        title="5. 서울시 음식점 랭킹 솔루션 DW 구축"
                         role="Data Engineer"
-                        desc="공공/웹 데이터 통합 DW 구축 및 Docker 기반 개발 환경 표준화로 데이터 자산화 실현"
+                        desc="공공 데이터 기반 음식점 리뷰 DW 구축 및 Docker 기반 개발 환경 표준화"
                     />
                 </Stack>
 
