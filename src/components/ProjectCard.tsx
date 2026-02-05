@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Image, Text, Badge, Button, Group, Modal, Stack, Title, List, ThemeIcon } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Modal, Stack, Title, List, ThemeIcon, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconExternalLink, IconListCheck, IconBolt, IconTrophy } from '@tabler/icons-react';
 import classes from './ProjectCard.module.css';
@@ -20,43 +20,32 @@ interface ProjectCardProps {
     githubUrl?: string;
     demoUrl?: string;
     star?: StarContent;
+    duration?: string;
+    contributions?: string[];
 }
 
-export function ProjectCard({ title, description, image, images, tags, githubUrl, demoUrl, star }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, images, tags, githubUrl, demoUrl, star, duration, contributions }: ProjectCardProps) {
     const [opened, { open, close }] = useDisclosure(false);
 
     return (
         <>
             <Modal opened={opened} onClose={close} title={title} size="xl" centered>
-                {/* Display multiple images if available, otherwise single image */}
-                {images && images.length > 0 ? (
-                    <Stack gap="xl" mb="xl">
-                        {images.map((img, index) => (
-                            <div key={index}>
-                                <Image
-                                    src={img.src}
-                                    alt={img.caption || `${title} - Image ${index + 1}`}
-                                    radius="md"
-                                    fit="contain"
-                                    h="auto"
-                                    mah={400} // Restrict max height as requested
-                                    bg="white"
-                                    p="sm"
-                                />
-                                {img.caption && (
-                                    <Text size="sm" c="dimmed" ta="center" mt="xs">
-                                        {img.caption}
-                                    </Text>
-                                )}
-                            </div>
-                        ))}
-                    </Stack>
-                ) : (
-                    <Image src={image} height={300} alt={title} radius="md" mb="md" fit="contain" bg="gray.1" />
-                )}
+                <Image src={image} height={400} alt={title} radius="md" mb="md" fit="cover" bg="#101113" />
 
                 <Text size="lg" fw={700} mb="xs">Project Overview</Text>
-                <Text mb="lg">{description}</Text>
+                {duration && <Text size="xs" c="dimmed" mb="sm">Duration: {duration}</Text>}
+                <Text mb="sm">{description}</Text>
+
+                {contributions && contributions.length > 0 && (
+                    <Box mb="lg">
+                        <Text size="sm" fw={700} mb={5} color="blue">Key Contributions</Text>
+                        <List size="sm" spacing="xs" withPadding>
+                            {contributions.map((item, idx) => (
+                                <List.Item key={idx}>{item}</List.Item>
+                            ))}
+                        </List>
+                    </Box>
+                )}
 
                 {star && (
                     <Stack gap="md" mb="xl">
@@ -94,6 +83,34 @@ export function ProjectCard({ title, description, image, images, tags, githubUrl
                     ))}
                 </Group>
 
+                {images && images.length > 0 && (
+                    <Box mt="xl" pt="xl" mb="xl" style={{ borderTop: '1px solid var(--mantine-color-gray-2)' }}>
+                        <Text size="lg" fw={700} mb="md">Project Screenshots</Text>
+                        <Stack gap="xl">
+                            {images.map((img, index) => (
+                                <div key={index}>
+                                    <Image
+                                        src={img.src}
+                                        alt={img.caption || `${title} - Image ${index + 1}`}
+                                        radius="md"
+                                        fit="contain"
+                                        h="auto"
+                                        mah={500}
+                                        bg="white"
+                                        p="xs"
+                                        style={{ border: '1px solid var(--mantine-color-gray-1)' }}
+                                    />
+                                    {img.caption && (
+                                        <Text size="xs" c="dimmed" ta="center" mt="xs">
+                                            {img.caption}
+                                        </Text>
+                                    )}
+                                </div>
+                            ))}
+                        </Stack>
+                    </Box>
+                )}
+
                 <Group mt="xl" justify="flex-end">
                     {githubUrl && (
                         <Button component="a" href={githubUrl} target="_blank" leftSection={<IconBrandGithub size={18} />} variant="default">
@@ -128,6 +145,7 @@ export function ProjectCard({ title, description, image, images, tags, githubUrl
 
                 <Group justify="space-between" mt="md" mb="xs">
                     <Text fw={500}>{title}</Text>
+                    {duration && <Text size="xs" c="dimmed">{duration}</Text>}
                 </Group>
 
                 <Text size="sm" c="dimmed" lineClamp={3}>

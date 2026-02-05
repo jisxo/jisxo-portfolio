@@ -1,12 +1,17 @@
 'use client';
 
+import React from 'react';
+
 import { Container, Title, Text, Group, Stack, Badge, Divider, Button, Box, ThemeIcon, List, Paper, Grid } from '@mantine/core';
 import { IconMail, IconBrandGithub, IconWorld, IconPrinter, IconPhone, IconMapPin, IconBrandLinkedin } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
+import { projects } from '@/data/projects';
+import { resumeData } from '@/data/resume';
 import classes from './resume.module.css';
 
 export default function ResumePage() {
     const router = useRouter();
+    const { personal, summary, experience, skills, education } = resumeData;
 
     const handlePrint = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -67,30 +72,30 @@ export default function ResumePage() {
                 {/* Header */}
                 <Group justify="space-between" align="flex-start" mb="xl">
                     <div>
-                        <Title order={1} size={36} fw={900} style={{ letterSpacing: '-0.5px' }}>정지서 (Jiseo Jeong)</Title>
-                        <Text size="xl" fw={600} c="blue.8" mt={4}>Data Engineer</Text>
+                        <Title order={1} size={36} fw={900} style={{ letterSpacing: '-0.5px' }}>{personal.name}</Title>
+                        <Text size="xl" fw={600} c="blue.8" mt={4}>{personal.role}</Text>
                     </div>
                     <Stack gap={4} align="flex-end">
                         <Group gap={8}>
                             <IconPhone size={16} color="#666" />
-                            <Text size="sm" c="dimmed">{process.env.NEXT_PUBLIC_USER_PHONE || '010-0000-0000'}</Text>
+                            <Text size="sm" c="dimmed">{personal.phone}</Text>
                         </Group>
                         <Group gap={8}>
                             <IconBrandGithub size={16} color="#666" />
-                            <Text size="sm" c="dimmed" component="a" href="https://github.com/jisxo">
-                                github.com/jisxo
+                            <Text size="sm" c="dimmed" component="a" href={`https://github.com/${personal.github}`}>
+                                github.com/{personal.github}
                             </Text>
                         </Group>
                         <Group gap={8}>
                             <IconMail size={16} color="#666" />
-                            <Text size="sm" c="dimmed" component="a" href={`mailto:${process.env.NEXT_PUBLIC_USER_EMAIL || ''}`}>
-                                {process.env.NEXT_PUBLIC_USER_EMAIL || 'email@example.com'}
+                            <Text size="sm" c="dimmed" component="a" href={`mailto:${personal.email}`}>
+                                {personal.email}
                             </Text>
                         </Group>
                         <Group gap={8}>
                             <IconWorld size={16} color="#666" />
-                            <Text size="sm" c="dimmed" component="a" href={process.env.NEXT_PUBLIC_USER_PORTFOLIO_URL || '#'}>
-                                {process.env.NEXT_PUBLIC_USER_PORTFOLIO_URL?.replace(/^https?:\/\//, '') || 'portfolio-url.com'}
+                            <Text size="sm" c="dimmed" component="a" href={personal.portfolioUrl.startsWith('http') ? personal.portfolioUrl : `https://${personal.portfolioUrl}`}>
+                                {personal.portfolioUrl.replace(/^https?:\/\//, '')}
                             </Text>
                         </Group>
                     </Stack>
@@ -100,122 +105,78 @@ export default function ResumePage() {
 
                 {/* Summary */}
                 <SectionTitle title="Summary" />
-                <Text size="sm" lh={1.6} mb="xl" c="dark.9">
-                    <b>"데이터의 흐름을 설계하고 가치를 만드는 데이터 엔지니어"</b><br />
-                    복잡한 데이터 속에서 의미를 발견하고, 이를 안정적인 파이프라인으로 구축하는 과정에 열정을 느낍니다. Python과 Airflow를 활용해 수천만 건의 보안 로그를 처리하는 시스템을 구축했으며, 비효율적인 반복 업무를 자동화(RPA)하여 동료들의 시간을 아껴주는 일에서 보람을 느낍니다. 기술 너머의 비즈니스 목표를 이해하고, 차가운 데이터 뒤에 있는 사람의 의도를 읽어내려 노력합니다.
+                <Text size="sm" lh={1.6} mb="xl" c="dark.9" style={{ whiteSpace: 'pre-line' }}>
+                    {summary}
                 </Text>
 
                 {/* Skills */}
                 <SectionTitle title="Technical Skills" />
                 <Grid mb="xl">
-                    <Grid.Col span={3}><Text size="sm" fw={700}>Languages</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">Python, SQL, Shell Script</Text></Grid.Col>
-
-                    <Grid.Col span={3}><Text size="sm" fw={700}>Data Engineering</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">Apache Airflow, ETL Pipelines</Text></Grid.Col>
-
-                    <Grid.Col span={3}><Text size="sm" fw={700}>Infrastructure</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">Docker, Linux, CI/CD (Basic)</Text></Grid.Col>
-
-                    <Grid.Col span={3}><Text size="sm" fw={700}>Web & Others</Text></Grid.Col>
-                    <Grid.Col span={9}><Text size="sm">React, RPA</Text></Grid.Col>
+                    {skills.map((skillCat, idx) => (
+                        <React.Fragment key={idx}>
+                            <Grid.Col span={3}><Text size="sm" fw={700}>{skillCat.title}</Text></Grid.Col>
+                            <Grid.Col span={9}><Text size="sm">{skillCat.skills.join(', ')}</Text></Grid.Col>
+                        </React.Fragment>
+                    ))}
                 </Grid>
 
                 {/* Work Experience */}
                 <SectionTitle title="Work Experience" />
                 <Stack gap="xl" mb="xl">
-                    {/* CSLEE Freelance */}
-                    <ExperienceItem
-                        company="씨에스리 (CSLEE)"
-                        role="AI엔지니어링사업부 / 프리랜서"
-                        period="2025.04 - 2025.10"
-                        summary="SecuXper AI 솔루션 운영 및 유지보수"
-                    />
-
-                    {/* CSLEE Full-time */}
-                    <ExperienceItem
-                        company="씨에스리 (CSLEE)"
-                        role="AI엔지니어링사업부 선임 / Data Engineer"
-                        period="2021.03 - 2025.02 (4년)"
-                        summary="보안 관제 도메인에 특화된 데이터 엔지니어링 및 이상징후 탐지 파이프라인 구축"
-                    >
-                        <List size="sm" spacing={4} withPadding listStyleType="disc">
-                            <List.Item><b>Process Automation</b>: 수작업 제로화 및 데이터 파이프라인 100% 자동화 달성</List.Item>
-                            <List.Item><b>Problem Solving</b>: 대용량 데이터 처리 병목 현상 및 중복 적재 이슈 기술적 해결</List.Item>
-                        </List>
-                        <Group gap={8} mt="xs">
-                            <Badge size="xs" variant="outline" color="gray">Python</Badge>
-                            <Badge size="xs" variant="outline" color="gray">Airflow</Badge>
-                            <Badge size="xs" variant="outline" color="gray">RPA</Badge>
-                        </Group>
-                    </ExperienceItem>
-
-                    {/* Police Internship */}
-                    <ExperienceItem
-                        company="경찰청 치안빅데이터정책담당관실"
-                        role="인턴"
-                        period="2019.09 - 2020.02"
-                        summary="치안 데이터 분석 및 시각화"
-                    />
+                    {experience.map((exp, idx) => (
+                        <ExperienceItem
+                            key={idx}
+                            company={exp.company}
+                            role={exp.role}
+                            period={exp.period}
+                            summary={exp.summary}
+                        >
+                            {exp.bullets && (
+                                <List size="sm" spacing={4} withPadding listStyleType="disc">
+                                    {exp.bullets.map((bullet, bIdx) => (
+                                        <List.Item key={bIdx}>{bullet}</List.Item>
+                                    ))}
+                                </List>
+                            )}
+                            {exp.skills && (
+                                <Group gap={8} mt="xs">
+                                    {exp.skills.map((skill, sIdx) => (
+                                        <Badge key={sIdx} size="xs" variant="outline" color="gray">{skill}</Badge>
+                                    ))}
+                                </Group>
+                            )}
+                        </ExperienceItem>
+                    ))}
                 </Stack>
 
                 {/* Projects */}
                 <div className="page-break" />
                 <SectionTitle title="Key Projects" />
                 <Stack gap="xl" mb="xl">
-                    <ProjectItem
-                        title="1. 대기업 통신사, 대용량 보안 로그 처리 로직 최적화 및 AI 데이터셋 구축"
-                        role="데이터 엔지니어 (ETL / 데이터 표준화)"
-                        desc="대용량 보안 데이터 처리 로직을 청크 단위로 최적화하여 지연 시간을 획기적으로 단축하고, AI 분석을 위한 데이터 표준화 및 학습셋 구축"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'OpenSearch', 'Linux', 'Data Standardization']}
-                    />
-                    <ProjectItem
-                        title="2. L사, 보안 로그 분석 및 이상징후 탐지 파이프라인 구축"
-                        role="데이터 엔지니어 (수집/전처리/EDA)"
-                        desc="사외 발송 메일 로그 수집/전처리 100% 자동화, 다각도의 탐색적 분석을 통한 이상징후 탐지 룰 도출"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'Pandas', 'ETL Pipeline']}
-                    />
-                    <ProjectItem
-                        title="3. L사, 이기종 보안 로그 통합 및 이상징후 탐지 파이프라인 구축"
-                        role="데이터 엔지니어 (ETL 구축)"
-                        desc="5종 이기종 로그 통합 ETL 구축, 데이터 중복 이슈 해결로 정합성 100% 달성"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'ETL Pipeline', 'Data Standardization']}
-                    />
-                    <ProjectItem
-                        title="4. L사, 내부자 위협 탐지 및 비정형 텍스트 파이프라인 구축"
-                        role="데이터 엔지니어 (Airflow/NLP)"
-                        desc="메신저/이메일 비정형 텍스트 분석 자동화, 대용량 JSON 파일을 분할하여 처리하는 방식으로 대용량 처리 병목 해결"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'NLP', 'Performance Optimization']}
-                    />
-                    <ProjectItem
-                        title="5. 아마존 글로벌 광고 비딩 및 키워드 관리 RPA 시스템 구축"
-                        role="풀스택 개발자"
-                        desc="Python/Airflow 활용 글로벌 10개국 광고 운영 자동화, 150시간 업무 → 2.5시간으로 98% 단축"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'Django', 'Amazon API']}
-                    />
-                    <ProjectItem
-                        title="6. 서울시 음식점 랭킹 솔루션 DW 구축"
-                        role="데이터 엔지니어"
-                        desc="공공 데이터 기반 음식점 리뷰 DW 구축 및 Docker 기반 개발 환경 표준화"
-                        tags={['Python', 'Docker', 'Apache Airflow', 'PostgreSQL', 'Web Crawling']}
-                    />
+                    {projects.map((project, index) => (
+                        <ProjectItem
+                            key={index}
+                            title={`${index + 1}. ${project.title}`}
+                            role={project.role}
+                            desc={project.description}
+                            tags={project.tags}
+                            period={project.duration}
+                            contributions={project.contributions}
+                        />
+                    ))}
                 </Stack>
 
                 {/* Education */}
                 <SectionTitle title="Education" />
-                <Group justify="space-between" align="flex-start" mb="xs">
-                    <div>
-                        <Text fw={700} size="sm">동덕여자대학교 (Dongduk Women's Univ.)</Text>
-                        <Text size="sm">Information Statistics (정보통계학과) / 학사</Text>
-                    </div>
-                    <Text size="sm" c="dimmed">2014.03 - 2018.02</Text>
-                </Group>
-                <Group justify="space-between" align="flex-start">
-                    <div>
-                        <Text fw={700} size="sm">해성국제컨벤션고등학교</Text>
-                    </div>
-                    <Text size="sm" c="dimmed">2011.03 - 2014.02</Text>
-                </Group>
+                {education.map((edu, idx) => (
+                    <Group key={idx} justify="space-between" align="flex-start" mb={idx === education.length - 1 ? 0 : 'xs'}>
+                        <div>
+                            <Text fw={700} size="sm">{edu.school}</Text>
+                            <Text size="sm">{edu.degree}</Text>
+                        </div>
+                        <Text size="sm" c="dimmed">{edu.period}</Text>
+                    </Group>
+                ))}
             </Paper>
         </Box>
     );
@@ -245,21 +206,32 @@ function ExperienceItem({ company, role, period, summary, children }: any) {
     );
 }
 
-function ProjectItem({ title, role, desc, tags }: any) {
+function ProjectItem({ title, role, desc, tags, period, contributions }: any) {
     return (
         <Box>
             <Group justify="space-between" mb={2} align="flex-start">
                 <Text fw={700} size="sm" style={{ flex: 1 }}>{title}</Text>
+                {period && <Text size="xs" c="dimmed" fw={500}>{period}</Text>}
             </Group>
-            <Group gap={8} mb={2}>
+            <Group gap={8} mb={4}>
                 <Text size="xs" c="dimmed" fw={600} bg="gray.1" px={6} py={1} style={{ borderRadius: 4 }}>{role}</Text>
             </Group>
+
+            <Text size="sm" lh={1.4} mb={contributions ? 8 : 0}>{desc}</Text>
+
+            {contributions && contributions.length > 0 && (
+                <List size="xs" spacing={2} withPadding mb={8} style={{ color: 'var(--mantine-color-gray-7)' }}>
+                    {contributions.map((item: string, idx: number) => (
+                        <List.Item key={idx}>{item}</List.Item>
+                    ))}
+                </List>
+            )}
+
             {tags && tags.length > 0 && (
-                <Text size="xs" c="dimmed" mb={2} style={{ fontStyle: 'italic' }}>
+                <Text size="xs" c="dimmed" style={{ fontStyle: 'italic' }}>
                     Toolkit: {tags.join(', ')}
                 </Text>
             )}
-            <Text size="sm" lh={1.4}>{desc}</Text>
         </Box>
     );
 }

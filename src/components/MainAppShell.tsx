@@ -6,6 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { IconSun, IconMoon, IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
+import { siteConfig, navLinks } from '@/data/site';
 import classes from './MainAppShell.module.css';
 
 export function MainAppShell({ children }: { children: React.ReactNode }) {
@@ -18,11 +19,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
         setMounted(true);
     }, []);
 
-    const links = [
-        { link: '/', label: 'Home' },
-        { link: '#projects', label: 'Projects' },
-        { link: '#about', label: 'About' },
-    ];
+    const links = navLinks;
 
     const mainLinks = links.map((link) => (
         <Link
@@ -50,7 +47,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
                     <Group gap={5} visibleFrom="sm">
                         <Link href="/" style={{ textDecoration: 'none' }}>
                             <Text size="xl" fw={700} variant="gradient" gradient={{ from: 'blue', to: 'cyan', deg: 90 }} style={{ cursor: 'pointer' }}>
-                                Jiseo.Dev
+                                {siteConfig.name.split('|')[1]?.trim() || 'Jiseo'}.Dev
                             </Text>
                         </Link>
                     </Group>
@@ -60,7 +57,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
                     {/* Logo for mobile centered or left */}
                     <Group gap={5} hiddenFrom="sm">
                         <Link href="/" style={{ textDecoration: 'none' }}>
-                            <Text size="lg" fw={700} c="black">Jiseo.Dev</Text>
+                            <Text size="lg" fw={700} c="black">{siteConfig.name.split('|')[1]?.trim() || 'Jiseo'}.Dev</Text>
                         </Link>
                     </Group>
 
@@ -87,22 +84,29 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             <AppShell.Navbar p="md">
                 {mainLinks}
                 <Group mt="xl">
-                    <ActionIcon component="a" href="https://github.com/jisxo" target="_blank" size="lg" variant="subtle" color="gray">
+                    <ActionIcon component="a" href={siteConfig.github} target="_blank" size="lg" variant="subtle" color="gray">
                         <IconBrandGithub size={20} />
                     </ActionIcon>
-                    <ActionIcon component="a" href="https://linkedin.com" target="_blank" size="lg" variant="subtle" color="blue">
+                    <ActionIcon component="a" href={siteConfig.linkedin} target="_blank" size="lg" variant="subtle" color="blue">
                         <IconBrandLinkedin size={20} />
                     </ActionIcon>
                 </Group>
             </AppShell.Navbar>
 
             <AppShell.Main>
-                {pathname?.includes('/resume') ? (
-                    children
-                ) : (
+                {/* Prevent hydration mismatch by rendering a stable structure until mounted */}
+                {!mounted ? (
                     <Container size="lg">
                         {children}
                     </Container>
+                ) : (
+                    pathname?.includes('/resume') ? (
+                        children
+                    ) : (
+                        <Container size="lg">
+                            {children}
+                        </Container>
+                    )
                 )}
             </AppShell.Main>
         </AppShell>

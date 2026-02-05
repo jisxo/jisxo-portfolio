@@ -4,40 +4,10 @@ import { Container, Title, Text, SimpleGrid, Card, Group, Badge, ThemeIcon, rem 
 import { IconDatabase, IconServer, IconChartBar, IconDeviceDesktop } from '@tabler/icons-react';
 import classes from './Skills.module.css';
 
-const skillsData = [
-    {
-        title: 'Data Engineering',
-        icon: IconDatabase,
-        color: 'blue',
-        skills: ['Python', 'SQL', 'Apache Airflow', 'R'],
-    },
-    {
-        title: 'DevOps & Infra',
-        icon: IconServer,
-        color: 'teal',
-        skills: ['Docker', 'Linux', 'GitHub', 'GitLab'],
-    },
-    {
-        title: 'Web Development',
-        icon: IconDeviceDesktop,
-        color: 'orange',
-        skills: ['Django', 'React.js', 'Vue.js', 'JavaScript', 'HTML'],
-    },
-    {
-        title: 'Data Science & AI',
-        icon: IconChartBar,
-        color: 'grape',
-        skills: ['Tensorflow', 'Pandas', 'NumPy'],
-    },
-    {
-        title: 'Database',
-        icon: IconDatabase,
-        color: 'cyan',
-        skills: ['PostgreSQL', 'ElasticSearch', 'Splunk', 'Logpresso'],
-    },
-];
+import { skillCategories } from '@/data/resume/skills';
 
 export function Skills() {
+    const skillsData = skillCategories;
     const cards = skillsData.map((category) => (
         <Card key={category.title} shadow="sm" radius="md" withBorder className={classes.card} padding="xl">
             <Group justify="space-between" mb="xs">
