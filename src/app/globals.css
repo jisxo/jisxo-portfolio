@@ -7,7 +7,7 @@ html {
 
 @media print {
 
-   /* Hide Mantine AppShell Header and Navbar */
+   /* Hide Mantine AppShell Header, Navbar, and other non-print elements */
    .mantine-AppShell-header,
    .mantine-AppShell-navbar,
    header,
@@ -16,16 +16,64 @@ html {
       display: none !important;
    }
 
-   /* Reset body margins and background */
+   /* Structural Reset: Ensure pages can flow */
+   html,
    body {
-      margin: 0;
-      padding: 0;
-      background: white;
+      background: white !important;
+      height: auto !important;
+      min-height: auto !important;
+      overflow: visible !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
    }
 
-   /* Ensure the main content takes full width */
+   /* Next.js and Mantine wrappers reset */
+   #__next,
+   .mantine-AppShell-root,
    .mantine-AppShell-main {
+      height: auto !important;
+      min-height: auto !important;
+      display: block !important;
+      overflow: visible !important;
       padding: 0 !important;
       margin: 0 !important;
+   }
+
+   /* Wrapper strict reset */
+   .resume-wrapper {
+      display: block !important;
+      height: auto !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      margin: 0 !important;
+   }
+
+   /* Resume Specific Overrides */
+   .resume-container {
+      box-shadow: none !important;
+      --paper-shadow: none !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      /* Let specific padding handle it if needed, or controlled by @page */
+      max-width: 100% !important;
+      width: 100% !important;
+   }
+
+   /* Mantine Paper overrides specifically */
+   .mantine-Paper-root {
+      box-shadow: none !important;
+      border: none !important;
+   }
+
+   /* Force Page Break Utility */
+   .page-break {
+      page-break-before: always !important;
+      break-before: page !important;
+      display: block !important;
+      height: 1px !important;
+      visibility: hidden;
+      margin-top: 2rem;
    }
 }

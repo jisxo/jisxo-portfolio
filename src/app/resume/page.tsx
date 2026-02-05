@@ -21,6 +21,7 @@ export default function ResumePage() {
         <Box
             bg="gray.0"
             py="xl"
+            className="resume-wrapper"
             style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'zoom-out' }}
             onClick={handleBackgroundClick}
         >
@@ -72,15 +73,25 @@ export default function ResumePage() {
                     <Stack gap={4} align="flex-end">
                         <Group gap={8}>
                             <IconPhone size={16} color="#666" />
-                            <Text size="sm" c="dimmed">010-7412-3699</Text>
+                            <Text size="sm" c="dimmed">{process.env.NEXT_PUBLIC_USER_PHONE || '010-0000-0000'}</Text>
+                        </Group>
+                        <Group gap={8}>
+                            <IconBrandGithub size={16} color="#666" />
+                            <Text size="sm" c="dimmed" component="a" href="https://github.com/jisxo">
+                                github.com/jisxo
+                            </Text>
                         </Group>
                         <Group gap={8}>
                             <IconMail size={16} color="#666" />
-                            <Text size="sm" c="dimmed" component="a" href="mailto:jisxo@kakao.com">jisxo@kakao.com</Text>
+                            <Text size="sm" c="dimmed" component="a" href={`mailto:${process.env.NEXT_PUBLIC_USER_EMAIL || ''}`}>
+                                {process.env.NEXT_PUBLIC_USER_EMAIL || 'email@example.com'}
+                            </Text>
                         </Group>
                         <Group gap={8}>
                             <IconWorld size={16} color="#666" />
-                            <Text size="sm" c="dimmed" component="a" href="https://jisxo-portfolio.netlify.app">jisxo-portfolio.netlify.app</Text>
+                            <Text size="sm" c="dimmed" component="a" href={process.env.NEXT_PUBLIC_USER_PORTFOLIO_URL || '#'}>
+                                {process.env.NEXT_PUBLIC_USER_PORTFOLIO_URL?.replace(/^https?:\/\//, '') || 'portfolio-url.com'}
+                            </Text>
                         </Group>
                     </Stack>
                 </Group>
@@ -149,32 +160,44 @@ export default function ResumePage() {
                 </Stack>
 
                 {/* Projects */}
+                <div className="page-break" />
                 <SectionTitle title="Key Projects" />
                 <Stack gap="xl" mb="xl">
                     <ProjectItem
-                        title="1. L사, 보안 로그 분석 및 이상징후 탐지 파이프라인 구축"
-                        role="Data Engineer (수집/전처리/EDA)"
-                        desc="사외 발송 메일 로그 수집/전처리 100% 자동화, 다각도의 EDA를 통한 이상징후 탐지 룰(Rule) 도출"
+                        title="1. 대기업 통신사, 대용량 보안 로그 처리 로직 최적화 및 AI 데이터셋 구축"
+                        role="데이터 엔지니어 (ETL / 데이터 표준화)"
+                        desc="대용량 보안 데이터 처리 로직을 청크 단위로 최적화하여 지연 시간을 획기적으로 단축하고, AI 분석을 위한 데이터 표준화 및 학습셋 구축"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'OpenSearch', 'Linux', 'Data Standardization']}
                     />
                     <ProjectItem
-                        title="2. L사, 이기종 보안 로그 통합 및 이상징후 탐지 파이프라인 구축"
-                        role="Data Engineer (ETL 구축)"
-                        desc="5종 이기종 로그 통합 ETL 구축, 데이터 중복(Doubling) 이슈 해결로 정합성 100% 달성"
+                        title="2. L사, 보안 로그 분석 및 이상징후 탐지 파이프라인 구축"
+                        role="데이터 엔지니어 (수집/전처리/EDA)"
+                        desc="사외 발송 메일 로그 수집/전처리 100% 자동화, 다각도의 탐색적 분석을 통한 이상징후 탐지 룰 도출"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'Pandas', 'ETL Pipeline']}
                     />
                     <ProjectItem
-                        title="3. L사, 내부자 위협 탐지 및 비정형 텍스트 파이프라인 구축"
-                        role="Data Engineer (Airflow/NLP)"
+                        title="3. L사, 이기종 보안 로그 통합 및 이상징후 탐지 파이프라인 구축"
+                        role="데이터 엔지니어 (ETL 구축)"
+                        desc="5종 이기종 로그 통합 ETL 구축, 데이터 중복 이슈 해결로 정합성 100% 달성"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'ETL Pipeline', 'Data Standardization']}
+                    />
+                    <ProjectItem
+                        title="4. L사, 내부자 위협 탐지 및 비정형 텍스트 파이프라인 구축"
+                        role="데이터 엔지니어 (Airflow/NLP)"
                         desc="메신저/이메일 비정형 텍스트 분석 자동화, 대용량 JSON 파일을 분할하여 처리하는 방식으로 대용량 처리 병목 해결"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'NLP', 'Performance Optimization']}
                     />
                     <ProjectItem
-                        title="4. 아마존 글로벌 광고 비딩 및 키워드 관리 RPA 시스템 구축"
-                        role="Full Stack Developer"
+                        title="5. 아마존 글로벌 광고 비딩 및 키워드 관리 RPA 시스템 구축"
+                        role="풀스택 개발자"
                         desc="Python/Airflow 활용 글로벌 10개국 광고 운영 자동화, 150시간 업무 → 2.5시간으로 98% 단축"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'Django', 'Amazon API']}
                     />
                     <ProjectItem
-                        title="5. 서울시 음식점 랭킹 솔루션 DW 구축"
-                        role="Data Engineer"
+                        title="6. 서울시 음식점 랭킹 솔루션 DW 구축"
+                        role="데이터 엔지니어"
                         desc="공공 데이터 기반 음식점 리뷰 DW 구축 및 Docker 기반 개발 환경 표준화"
+                        tags={['Python', 'Docker', 'Apache Airflow', 'PostgreSQL', 'Web Crawling']}
                     />
                 </Stack>
 
@@ -222,7 +245,7 @@ function ExperienceItem({ company, role, period, summary, children }: any) {
     );
 }
 
-function ProjectItem({ title, role, desc }: any) {
+function ProjectItem({ title, role, desc, tags }: any) {
     return (
         <Box>
             <Group justify="space-between" mb={2} align="flex-start">
@@ -231,6 +254,11 @@ function ProjectItem({ title, role, desc }: any) {
             <Group gap={8} mb={2}>
                 <Text size="xs" c="dimmed" fw={600} bg="gray.1" px={6} py={1} style={{ borderRadius: 4 }}>{role}</Text>
             </Group>
+            {tags && tags.length > 0 && (
+                <Text size="xs" c="dimmed" mb={2} style={{ fontStyle: 'italic' }}>
+                    Toolkit: {tags.join(', ')}
+                </Text>
+            )}
             <Text size="sm" lh={1.4}>{desc}</Text>
         </Box>
     );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { MainAppShell } from "@/components/MainAppShell";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 import '@mantine/core/styles.css';
 
@@ -45,6 +46,31 @@ export default function RootLayout({
         <MantineProvider defaultColorScheme="dark">
           <MainAppShell>{children}</MainAppShell>
         </MantineProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Jiseo Jeong",
+              "alternateName": "정지서",
+              "jobTitle": "Data Engineer",
+              "url": "https://portfolio-jiseojeong.netlify.app",
+              "sameAs": [
+                "https://github.com/jisxo", // Update with real link if available
+                "https://portfolio-jiseojeong.netlify.app"
+              ],
+              "worksFor": {
+                "@type": "Organization",
+                "name": "CSLEE"
+              },
+              "description": "Data Engineer specializing in Python, Airflow, and Pipeline Optimization."
+            })
+          }}
+        />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

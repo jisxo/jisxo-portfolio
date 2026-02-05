@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { AppShell, Burger, Group, Text, UnstyledButton, useMantineColorScheme, ActionIcon, Container, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
@@ -11,6 +12,11 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
     const [opened, { toggle }] = useDisclosure();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const pathname = usePathname();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const links = [
         { link: '/', label: 'Home' },
@@ -68,7 +74,12 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
                         size="lg"
                         aria-label="Toggle color scheme"
                     >
-                        {colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
+                        {/* Prevent hydration mismatch by rendering default (Dark->Sun) until mounted */}
+                        {!mounted ? (
+                            <IconSun size={18} />
+                        ) : (
+                            colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />
+                        )}
                     </ActionIcon>
                 </Container>
             </AppShell.Header>
@@ -76,7 +87,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             <AppShell.Navbar p="md">
                 {mainLinks}
                 <Group mt="xl">
-                    <ActionIcon component="a" href="https://github.com" target="_blank" size="lg" variant="subtle" color="gray">
+                    <ActionIcon component="a" href="https://github.com/jisxo" target="_blank" size="lg" variant="subtle" color="gray">
                         <IconBrandGithub size={20} />
                     </ActionIcon>
                     <ActionIcon component="a" href="https://linkedin.com" target="_blank" size="lg" variant="subtle" color="blue">

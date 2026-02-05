@@ -1,6 +1,9 @@
 @media print {
     @page {
-        margin: 10mm;
+        margin-top: 20mm;
+        margin-bottom: 20mm;
+        margin-left: 15mm;
+        margin-right: 15mm;
         size: auto;
     }
 
@@ -10,16 +13,33 @@
         print-color-adjust: exact;
     }
 
+    :global(.resume-wrapper) {
+        display: block !important;
+        background: white !important;
+        padding: 0 !important;
+        height: auto !important;
+    }
+
     :global(.no-print) {
         display: none !important;
     }
 
     :global(.resume-container) {
         box-shadow: none !important;
+        --paper-shadow: none !important;
+        border: none !important;
         margin: 0 !important;
         width: 100% !important;
         min-height: auto !important;
         padding: 0 !important;
-        /* Let @page handle margins */
+    }
+
+    :global(.page-break) {
+        page-break-before: always !important;
+        break-before: page !important;
+        display: block;
+        height: 1px;
+        /* Ensure it takes up space in the flow */
+        margin-top: 2rem;
     }
 }
