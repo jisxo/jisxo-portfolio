@@ -11,7 +11,7 @@ import classes from './resume.module.css';
 
 export default function ResumePage() {
     const router = useRouter();
-    const { personal, summary, experience, skills, education } = resumeData;
+    const { personal, summary, experience, skills, education, certifications } = resumeData;
 
     const handlePrint = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -169,7 +169,7 @@ export default function ResumePage() {
                 {/* Education */}
                 <SectionTitle title="Education" />
                 {education.map((edu, idx) => (
-                    <Group key={idx} justify="space-between" align="flex-start" mb={idx === education.length - 1 ? 0 : 'xs'}>
+                    <Group key={idx} justify="space-between" align="flex-start" mb="xs">
                         <div>
                             <Text fw={700} size="sm">{edu.school}</Text>
                             <Text size="sm">{edu.degree}</Text>
@@ -177,6 +177,22 @@ export default function ResumePage() {
                         <Text size="sm" c="dimmed">{edu.period}</Text>
                     </Group>
                 ))}
+
+                {/* Certifications */}
+                <Box mt="xl">
+                    <SectionTitle title="Certifications" />
+                    <Stack gap="xs">
+                        {certifications.map((cert, idx) => (
+                            <Group key={idx} justify="space-between" align="flex-start">
+                                <div>
+                                    <Text fw={700} size="sm">{cert.name}</Text>
+                                    {cert.issuer && <Text size="xs" c="dimmed">{cert.issuer}</Text>}
+                                </div>
+                                <Text size="sm" c="dimmed">{cert.date}</Text>
+                            </Group>
+                        ))}
+                    </Stack>
+                </Box>
             </Paper>
         </Box>
     );

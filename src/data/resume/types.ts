@@ -27,10 +27,17 @@ export interface SkillCategory {
     skills: string[];
 }
 
+export interface Certification {
+    name: string;
+    date: string;
+    issuer?: string;
+}
+
 export interface ResumeData {
     personal: PersonalInfo;
     summary: string;
     experience: Experience[];
     education: Education[];
     skills: SkillCategory[];
+    certifications: Certification[];
 }

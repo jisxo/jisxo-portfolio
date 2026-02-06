@@ -12,7 +12,7 @@ export const skillCategories: SkillCategory[] = [
         title: 'Data Engineering',
         icon: IconDatabase,
         color: 'blue',
-        skills: ['Python', 'SQL', 'Apache Airflow', 'ETL Pipelines', 'Data Modeling'],
+        skills: ['Python', 'SQL', 'Apache Airflow', 'ETL Pipelines', 'Automation'],
     },
     {
         title: 'DevOps & Infra',
@@ -27,15 +27,15 @@ export const skillCategories: SkillCategory[] = [
         skills: ['Django', 'React.js', 'Vue.js', 'JavaScript', 'HTML/CSS'],
     },
     {
-        title: 'Database & Security',
+        title: 'Database',
         icon: IconDatabase,
         color: 'cyan',
-        skills: ['PostgreSQL', 'ElasticSearch', 'Splunk', 'Logpresso'],
+        skills: ['PostgreSQL', 'ElasticSearch'],
     },
     {
         title: 'Data Science & AI',
         icon: IconChartBar,
         color: 'grape',
-        skills: ['Tensorflow', 'Pandas', 'NumPy', 'EDA'],
+        skills: ['Tensorflow', 'Pandas', 'NumPy', 'NLP', 'Anomaly Detection', 'EDA'],
     },
 ];

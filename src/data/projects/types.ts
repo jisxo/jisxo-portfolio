@@ -8,6 +8,7 @@ export interface Project {
     title: string;
     description: string;
     image: string;
+    domain?: string;
     images?: { src: string; caption?: string }[];
     tags: string[];
     duration?: string;
