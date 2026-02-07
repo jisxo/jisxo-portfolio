@@ -1,25 +1,38 @@
 import { Project } from './types';
 
 export const restaurantProject: Project = {
-    title: '공공·웹 데이터 기반의 음식점 랭킹 산출 및 상권 분석 시스템',
-    duration: '2022.11 - 2023.01, 2023.11-2024.02',
-    role: '데이터 엔지니어',
-    description: '상권 분석 컨설팅 및 데이터 판매 신규 비즈니스를 위해, 파편화된 이기종 데이터를 통합하여 고품질의 랭킹 지표를 산출하는 데이터 웨어하우스 구축 프로젝트.',
+    title: 'F&B 실시간 트렌드 랭킹 솔루션 \'HIPP\' 개발',
+    duration: '2022.11 - 2023.05, 2023.12-2024.01',
+    role: '데이터 엔지니어 (Full-Stack)',
+    description: '단순 평점순이 아닌, 네이버 키워드 검색량과 리뷰 생성 속도를 분석하여 \'현재 가장 뜨고 있는 맛집\'을 발굴하는 실시간 랭킹 시스템.',
     image: '/images/thumbnails/restaurant_dw.png',
     images: [
-        { src: '/images/hipp_fe.png', caption: '상권 분석 웹 서비스 화면' },
-        { src: '/images/hipp_architecture.png', caption: '상권 분석 시스템 아키텍처' },
-        { src: '/images/hipp_db_desc.png', caption: 'DB 인터페이스 명세서 (PostgreSQL)' }
+        { src: '/images/hipp_fe.png', caption: '트렌드 랭킹 대시보드 UI' },
+        { src: '/images/hipp_architecture.png', caption: 'Airflow 기반 하이브리드 수집 시스템 아키텍처' },
+        { src: '/images/hipp_db_desc.png', caption: '데이터 통합 DB 인터페이스 명세서' }
     ],
-    tags: ['Python', 'Docker', 'Apache Airflow', 'PostgreSQL', 'Web Crawling (Selenium/BS4)', 'Git'],
+    domain: 'Data Engineering, Crawling',
+    tags: ['Trend Analysis', 'Python', 'Django', 'Docker', 'Apache Airflow', 'PostgreSQL', 'Web Crawling (Selenium/BS4)'],
     star: {
-        situation: "서울시 상권 분석 및 입지 컨설팅을 위한 핵심 데이터(매출, 유동인구, 평점 등)를 확보하여, 이를 '판매 가능한 데이터 상품'으로 자산화하는 것이 목표였습니다. 하지만 유의미한 데이터가 공공 API와 포털 사이트로 파편화되어 있고, 데이터 간 결합 기준이 없어 신뢰도 높은 상권 분석 지표 산출이 불가능한 상황이었습니다.",
-        action: "서울시 공공데이터와 포털 크롤러를 개발하여 일일/주간 단위로 데이터를 수집·적재하는 자동화 시스템을 구현했습니다. 또한 수집된 Raw Data를 분석 목적에 맞게 정규화하여 데이터 마트로 재설계하고, 상세한 'DB 인터페이스 정의서'를 작성하여 데이터 활용도를 높였습니다.",
-        result: "흩어져 있던 서울시 전역의 데이터를 표준화된 DB로 통합하여, '상권 데이터 판매' 및 '입지 분석 리포트' 등 신규 비즈니스 모델의 기술적 토대를 마련했습니다. 최적화된 데이터 마트 구축을 통해 수천만 건의 데이터 연산 부하를 최소화하고, 실시간 랭킹 산출 및 대시보드 조회가 가능한 분석 환경을 완성했습니다."
+        situation: `정적 데이터의 한계: 기존 지도 플랫폼(네이버/카카오)의 '평점순' 필터는 누적된 과거 데이터에 의존하여, 막 떠오르는 '현재의 핫플레이스'를 반영하지 못하는 한계가 있었습니다.
+비효율적인 트렌드 파악: 마케터나 블로거들이 트렌드를 파악하기 위해 일일이 키워드 검색량을 조회해야 하는 번거로움을 해결하고, '실시간 유행(Viral)'을 정량화하여 보여주는 시스템이 필요했습니다.`,
+        action: `✅ 3단계 트렌드 스코어링 알고리즘 개발
+- 화제성(50%): 네이버 데이터랩 API 연동, 전주 대비 검색량 급상승 추이 분석으로 입소문 포착
+- 활성도(30%): 최근 1개월 내 신규 리뷰 생성 속도를 정량화하여 실제 방문 활성도 검증
+- 평판(20%): 2개 플랫폼(네이버/카카오) 평점을 앙상블하여 최소 품질 필터링 적용
+
+✅ 이원화된 데이터 수집 체계(Hybrid Pipeline) 구축
+- 일 단위(Daily) 크롤링 파이프라인으로 매일 변동하는 트렌드 지표 수집 자동화
+- API 쿼터 내 효율 극대화: 검색량 급상승 키워드를 우선 수집하는 우선순위 기반 스케줄링
+
+✅ 웹 서비스 전주기 개발(Full-Stack)
+- Batch Processing: Airflow로 매일 아침 랭킹 알고리즘을 수행하여 DB를 갱신하는 자동화 파이프라인 운영
+- Dashboard: 사용자가 지정한 지역(성수, 홍대 등)의 랭킹을 시각화하는 웹 서비스 구현 (Django)`,
+        result: `데이터 가치 창출: 파편화된 리뷰와 검색 데이터를 결합하여, 단순 정보가 아닌 '유행'이라는 동적 인사이트를 도출하는 데이터 프로덕트 완성.`
     },
     contributions: [
-        '서울시 공공 API 및 포털 사이트 크롤러 시스템 구축',
-        '이기종 데이터 정규화 및 데이터 마트 모델링 설계',
-        '수천만 건 대규모 연산 부하 최소화를 위한 DB 최적화'
+        '서울시 공공 API 및 2개 지도 플랫폼(Naver/Kakao) 크롤러 시스템 구축',
+        '이기종 데이터(API/크롤링) 통합을 위한 데이터 정규화 및 마트 모델링 설계',
+        'Selenium 메모리 누수 방지 및 대규모 수집 안정성을 위한 프로세스 최적화'
     ]
 };
