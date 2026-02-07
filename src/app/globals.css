@@ -5,6 +5,11 @@ html {
    scroll-behavior: smooth;
 }
 
+body {
+   word-break: keep-all;
+   overflow-wrap: break-word;
+}
+
 @media print {
 
    /* Hide Mantine AppShell Header, Navbar, and other non-print elements */
