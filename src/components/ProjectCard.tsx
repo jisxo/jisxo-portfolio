@@ -30,7 +30,7 @@ interface ProjectCardProps {
 const renderTextWithHighlights = (text: string) => {
     return text.split(/(\*\*.*?\*\*)/).map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-            return <Text key={i} span fw={800} c="blue.6">{part.slice(2, -2)}</Text>;
+            return <Text key={i} span fw={800} c="blue.6" style={{ wordBreak: 'keep-all' }}>{part.slice(2, -2)}</Text>;
         }
         return part;
     });
@@ -62,7 +62,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                 <ThemeIcon variant="light" color="indigo" size="sm" radius="sm"><IconUser size={14} /></ThemeIcon>
                                 <Text size="xs" fw={700} c="dimmed" style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>Role</Text>
                             </Group>
-                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line' }}>{role || 'Developer'}</Text>
+                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{role || 'Developer'}</Text>
                         </Stack>
                     </Paper>
 
@@ -72,7 +72,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                 <ThemeIcon variant="light" color="blue" size="sm" radius="sm"><IconNetwork size={14} /></ThemeIcon>
                                 <Text size="xs" fw={700} c="dimmed" style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>Domain</Text>
                             </Group>
-                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line' }}>{domain || 'IT / Tech'}</Text>
+                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{domain || 'IT / Tech'}</Text>
                         </Stack>
                     </Paper>
 
@@ -82,7 +82,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                 <ThemeIcon variant="light" color="teal" size="sm" radius="sm"><IconCalendar size={14} /></ThemeIcon>
                                 <Text size="xs" fw={700} c="dimmed" style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>Duration</Text>
                             </Group>
-                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line' }}>{duration || '-'}</Text>
+                            <Text size="sm" fw={800} lh={1.5} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{duration || '-'}</Text>
                         </Stack>
                     </Paper>
 
@@ -105,7 +105,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
 
                 <Box mb="xl">
                     <Text size="xl" fw={800} mb="xs" style={{ letterSpacing: '-0.5px' }}>Project Overview</Text>
-                    <Text size="md" lh={1.7}>{description}</Text>
+                    <Text size="md" lh={1.7} style={{ wordBreak: 'keep-all' }}>{description}</Text>
                 </Box>
 
 
@@ -122,7 +122,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                             }
                         >
                             {contributions.map((item, idx) => (
-                                <List.Item key={idx} fw={500}>{item}</List.Item>
+                                <List.Item key={idx} fw={500} style={{ wordBreak: 'keep-all' }}>{item}</List.Item>
                             ))}
                         </List>
                     </Paper>
@@ -139,7 +139,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                     <Text fw={800} size="lg" c="indigo.7">Situation & Challenge</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6}>{renderTextWithHighlights(star.situation)}</Text>
+                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.situation)}</Text>
                                 </Box>
                             </Paper>
 
@@ -154,7 +154,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                     <Text fw={800} size="lg" c="blue.7">Action & Implementation</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6}>{renderTextWithHighlights(star.action)}</Text>
+                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.action)}</Text>
                                 </Box>
                             </Paper>
 
@@ -169,7 +169,7 @@ export function ProjectCard({ title, description, image, domain, role, images, t
                                     <Text fw={800} size="lg" c="teal.7">Result & Impact</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6}>{renderTextWithHighlights(star.result)}</Text>
+                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.result)}</Text>
                                 </Box>
                             </Paper>
                         </Stack>
