@@ -56,7 +56,7 @@ export default function ResumePage() {
             {/* A4 Resume Container */}
             <Paper
                 shadow="md"
-                p={45}
+                p={60} // Aggressive padding
                 className="resume-container"
                 bg="white"
                 onClick={(e) => e.stopPropagation()}
@@ -64,111 +64,105 @@ export default function ResumePage() {
                     width: '210mm',
                     minHeight: '297mm', // A4 height
                     margin: '0 auto',
-                    color: '#000', // Force black text for print/readability
+                    color: '#000',
                     boxSizing: 'border-box',
                     cursor: 'auto'
                 }}
             >
-                {/* Header */}
-                <Group justify="space-between" align="flex-start" mb="xl">
+                {/* Header - Compact Row */}
+                <Group justify="space-between" align="flex-end" mb={50}>
                     <div>
-                        <Title order={1} fz={32} fw={900} style={{ letterSpacing: '-0.5px' }}>{personal.name}</Title>
-                        <Text fz="lg" fw={600} c="blue.8" mt={2}>{personal.role}</Text>
+                        <Title order={1} fz={28} fw={900} style={{ letterSpacing: '-0.5px' }}>{personal.name}</Title>
+                        <Text fz={13} fw={700} c="blue.8" tt="uppercase" style={{ letterSpacing: '1px' }}>{personal.role}</Text>
                     </div>
-                    <Stack gap={2} align="flex-end">
-                        <Group gap={8}>
-                            <IconPhone size={14} color="#666" />
-                            <Text fz={12} c="dimmed">{personal.phone}</Text>
-                        </Group>
-                        <Group gap={8}>
-                            <IconBrandGithub size={14} color="#666" />
-                            <Text fz={12} c="dimmed" component="a" href={`https://github.com/${personal.github}`}>
-                                github.com/{personal.github}
-                            </Text>
-                        </Group>
-                        <Group gap={8}>
-                            <IconMail size={14} color="#666" />
-                            <Text fz={12} c="dimmed" component="a" href={`mailto:${personal.email}`}>
-                                {personal.email}
-                            </Text>
-                        </Group>
-                        <Group gap={8}>
-                            <IconWorld size={14} color="#666" />
-                            <Text fz={12} c="dimmed" component="a" href={personal.portfolioUrl.startsWith('http') ? personal.portfolioUrl : `https://${personal.portfolioUrl}`}>
+                    <Group gap="xl" wrap="nowrap">
+                        <Stack gap={2} align="flex-end" style={{ borderRight: '1px solid var(--mantine-color-gray-2)', paddingRight: '15px' }}>
+                            <Text fz={10} c="dimmed">{personal.phone}</Text>
+                            <Text fz={10} c="dimmed" component="a" href={`mailto:${personal.email}`}>{personal.email}</Text>
+                        </Stack>
+                        <Stack gap={2} align="flex-end">
+                            <Text fz={10} c="dimmed" component="a" href={`https://github.com/${personal.github}`}>github.com/{personal.github}</Text>
+                            <Text fz={10} c="dimmed" component="a" href={personal.portfolioUrl.startsWith('http') ? personal.portfolioUrl : `https://${personal.portfolioUrl}`}>
                                 {personal.portfolioUrl.replace(/^https?:\/\//, '')}
                             </Text>
-                        </Group>
-                    </Stack>
+                        </Stack>
+                    </Group>
                 </Group>
 
-                <Divider mb="xl" color="gray.2" />
-
                 {/* Summary */}
-                <SectionTitle title="Summary" />
-                <Text fz={12} lh={1.6} mb="xl" c="dark.9" style={{ whiteSpace: 'pre-line' }}>
-                    {summary}
-                </Text>
+                <Box mb={50}>
+                    <SectionTitle title="Summary" />
+                    <Text fz={11} lh={1.6} c="dark.9" style={{ whiteSpace: 'pre-line', fontSize: '10.5pt' }}>
+                        {summary}
+                    </Text>
+                </Box>
 
                 {/* Skills */}
-                <SectionTitle title="Technical Skills" />
-                <Grid mb="xl" gutter="xs">
-                    {skills.map((skillCat, idx) => (
-                        <React.Fragment key={idx}>
-                            <Grid.Col span={3}><Text fz={12} fw={700}>{skillCat.title}</Text></Grid.Col>
-                            <Grid.Col span={9}><Text fz={12}>{skillCat.skills.join(', ')}</Text></Grid.Col>
-                        </React.Fragment>
-                    ))}
-                </Grid>
+                <Box mb={50}>
+                    <SectionTitle title="Technical Skills" />
+                    <Grid gutter="xs">
+                        {skills.map((skillCat, idx) => (
+                            <React.Fragment key={idx}>
+                                <Grid.Col span={3}><Text fz={11} fw={700} style={{ fontSize: '10.5pt' }}>{skillCat.title}</Text></Grid.Col>
+                                <Grid.Col span={9}><Text fz={11} style={{ fontSize: '10.5pt' }}>{skillCat.skills.join(', ')}</Text></Grid.Col>
+                            </React.Fragment>
+                        ))}
+                    </Grid>
+                </Box>
 
                 {/* Work Experience */}
-                <SectionTitle title="Work Experience" />
-                <Stack gap="xl" mb="xl">
-                    {experience.map((exp, idx) => (
-                        <ExperienceItem
-                            key={idx}
-                            company={exp.company}
-                            role={exp.role}
-                            period={exp.period}
-                            summary={exp.summary}
-                        >
-                            {exp.bullets && (
-                                <List fz={12} spacing={4} withPadding listStyleType="disc">
-                                    {exp.bullets.map((bullet, bIdx) => (
-                                        <List.Item key={bIdx}>{bullet}</List.Item>
-                                    ))}
-                                </List>
-                            )}
-                        </ExperienceItem>
-                    ))}
-                </Stack>
+                <Box mb={50}>
+                    <SectionTitle title="Work Experience" />
+                    <Stack gap={30}>
+                        {experience.map((exp, idx) => (
+                            <ExperienceItem
+                                key={idx}
+                                company={exp.company}
+                                role={exp.role}
+                                period={exp.period}
+                                summary={exp.summary}
+                            >
+                                {exp.bullets && (
+                                    <List fz={11} spacing={6} withPadding listStyleType="disc" style={{ fontSize: '10.5pt' }}>
+                                        {exp.bullets.map((bullet, bIdx) => (
+                                            <List.Item key={bIdx}>{bullet}</List.Item>
+                                        ))}
+                                    </List>
+                                )}
+                            </ExperienceItem>
+                        ))}
+                    </Stack>
+                </Box>
 
                 {/* Projects */}
                 <div className="page-break" />
-                <SectionTitle title="Key Projects" />
-                <Stack gap="xl" mb="xl">
-                    {projects.map((project, index) => (
-                        <ProjectItem
-                            key={index}
-                            title={`${index + 1}. ${project.title}`}
-                            role={project.role}
-                            desc={project.description}
-                            period={project.duration}
-                            contributions={project.contributions}
-                        />
-                    ))}
-                </Stack>
+                <Box mb={50} mt={30}>
+                    <SectionTitle title="Key Projects" />
+                    <Stack gap={35}>
+                        {projects.map((project, index) => (
+                            <ProjectItem
+                                key={index}
+                                title={`${index + 1}. ${project.title}`}
+                                role={project.role}
+                                desc={project.description}
+                                period={project.duration}
+                                contributions={project.contributions}
+                            />
+                        ))}
+                    </Stack>
+                </Box>
 
-                {/* Education & Certs */}
-                <Grid gutter={40}>
+                {/* Education & Certs - Bottom Row */}
+                <Grid gutter={50}>
                     <Grid.Col span={6}>
                         <SectionTitle title="Education" />
                         {education.map((edu, idx) => (
-                            <Box key={idx} mb="xs">
+                            <Box key={idx} mb="sm">
                                 <Group justify="space-between" align="baseline" mb={2}>
-                                    <Text fw={700} fz={12}>{edu.school}</Text>
-                                    <Text fz={11} c="dimmed">{edu.period}</Text>
+                                    <Text fw={700} fz={11} style={{ fontSize: '10.5pt' }}>{edu.school}</Text>
+                                    <Text fz={10} c="dimmed">{edu.period}</Text>
                                 </Group>
-                                <Text fz={12}>{edu.degree}</Text>
+                                <Text fz={11} style={{ fontSize: '10.5pt' }}>{edu.degree}</Text>
                             </Box>
                         ))}
                     </Grid.Col>
@@ -178,10 +172,10 @@ export default function ResumePage() {
                             {certifications.map((cert, idx) => (
                                 <Group key={idx} justify="space-between" align="baseline">
                                     <Box>
-                                        <Text fw={700} fz={12}>{cert.name}</Text>
-                                        {cert.issuer && <Text fz={10} c="dimmed" lh={1.2}>{cert.issuer}</Text>}
+                                        <Text fw={700} fz={11} style={{ fontSize: '10.5pt' }}>{cert.name}</Text>
+                                        {cert.issuer && <Text fz={9} c="dimmed" lh={1.2}>{cert.issuer}</Text>}
                                     </Box>
-                                    <Text fz={11} c="dimmed">{cert.date}</Text>
+                                    <Text fz={10} c="dimmed">{cert.date}</Text>
                                 </Group>
                             ))}
                         </Stack>
@@ -195,8 +189,8 @@ export default function ResumePage() {
 // Helper Components
 function SectionTitle({ title }: { title: string }) {
     return (
-        <Box mb="md">
-            <Text fz={12} fw={800} tt="uppercase" c="blue.8" mb={4} style={{ letterSpacing: '0.5px' }}>{title}</Text>
+        <Box mb={20}>
+            <Text fz={10} fw={800} tt="uppercase" c="blue.8" mb={8} style={{ letterSpacing: '1px' }}>{title}</Text>
             <Divider color="blue.1" size="xs" />
         </Box>
     );
@@ -205,12 +199,12 @@ function SectionTitle({ title }: { title: string }) {
 function ExperienceItem({ company, role, period, summary, children }: any) {
     return (
         <Box>
-            <Group justify="space-between" mb={2}>
-                <Text fw={700} fz="md">{company}</Text>
-                <Text fz={11} c="dimmed">{period}</Text>
+            <Group justify="space-between" mb={8}>
+                <Text fw={800} fz={16} style={{ letterSpacing: '-0.3px' }}>{company}</Text>
+                <Text fz={11} c="dimmed" fw={500}>{period}</Text>
             </Group>
-            <Text fz={12} fw={600} mb={4} c="dark.7">{role}</Text>
-            <Text fz={12} lh={1.4} mb={children ? 4 : 0}>{summary}</Text>
+            <Text fz={13} fw={700} mb={10} c="dark.7">{role}</Text>
+            <Text fz={11} lh={1.6} mb={children ? 12 : 0} c="dark.8" style={{ fontSize: '10.5pt' }}>{summary}</Text>
             {children}
         </Box>
     );
@@ -219,16 +213,16 @@ function ExperienceItem({ company, role, period, summary, children }: any) {
 function ProjectItem({ title, role, desc, period, contributions }: any) {
     return (
         <Box>
-            <Group justify="space-between" mb={2} align="flex-start">
-                <Text fw={700} fz={12} style={{ flex: 1 }}>{title}</Text>
+            <Group justify="space-between" mb={8} align="flex-start">
+                <Text fw={800} fz={14} style={{ flex: 1, letterSpacing: '-0.2px' }}>{title}</Text>
                 {period && <Text fz={10} c="dimmed" fw={500}>{period}</Text>}
             </Group>
-            <Text fz={11} c="dimmed" fw={600} mb={4}>{role}</Text>
+            <Text fz={11} c="blue.7" fw={700} mb={10} tt="uppercase" style={{ letterSpacing: '0.5px' }}>{role}</Text>
 
-            <Text fz={12} lh={1.4} mb={contributions ? 6 : 0}>{desc}</Text>
+            <Text fz={11} lh={1.6} mb={contributions ? 12 : 0} c="dark.8" style={{ fontSize: '10.5pt' }}>{desc}</Text>
 
             {contributions && contributions.length > 0 && (
-                <List fz={11} spacing={2} withPadding style={{ color: 'var(--mantine-color-gray-7)' }}>
+                <List fz={11} spacing={4} withPadding style={{ color: 'var(--mantine-color-gray-8)', fontSize: '10.5pt' }}>
                     {contributions.map((item: string, idx: number) => (
                         <List.Item key={idx}>{item}</List.Item>
                     ))}
