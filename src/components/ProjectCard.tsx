@@ -113,21 +113,21 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                     {overview ? (
                         <Stack gap="md">
                             <Box>
-                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
                                     Project Context
                                 </Text>
                                 <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.background}</Text>
                             </Box>
                             <Box>
-                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
                                     Key Objective
                                 </Text>
                                 <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.objective}</Text>
                             </Box>
                             <Box>
-                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
                                     Outcome & Impact
                                 </Text>
