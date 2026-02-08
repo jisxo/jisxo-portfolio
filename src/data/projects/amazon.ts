@@ -26,8 +26,7 @@ export const amazonProject: Project = {
 심야 및 공휴일에도 가동되는 **24/7 자동화 체제**를 통해 광고 운영의 일관성을 확보하고, 담당자가 전략적 의사결정에 집중할 수 있는 환경을 조성했습니다.`
     },
     contributions: [
-        'Amazon Advertising API 연동 백엔드 로직 구현',
-        'Docker 컨테이너 기반 Airflow 배치 스케줄링 구축',
-        '5가지 핵심 입찰/키워드 관리 자동화 알고리즘 개발'
+        'Amazon Advertising API 연동 기반 10개국 광고 입찰 자동화 (업무 공수 98% 절감)',
+        'Airflow 및 Docker 활용 무중단 자동 운영 파이프라인 및 대시보드 구축'
     ]
 };

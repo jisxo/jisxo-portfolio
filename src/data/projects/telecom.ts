@@ -23,8 +23,7 @@ export const telecomProject: Project = {
 더불어 휘발되던 운영 데이터를 **재학습 가능한 핵심 자산**으로 전환하여, 지속적인 AI 모델 성능 고도화를 위한 프로세스를 수립했습니다.`
     },
     contributions: [
-        'Airflow Sensor 기반 Event-Driven 파이프라인 재설계',
-        '스케줄링 경합 해결 및 배치 운영 안정화',
-        '운영 데이터의 학습 자산화 및 데이터셋 구축 체계 수립'
+        'Airflow Sensor 기반 Event-Driven 파이프라인 재설계 (배치 장애율 0% 달성)',
+        '현업 전문가 교차 검증을 통한 보안 이상탐지 학습 데이터셋 구축'
     ]
 };
