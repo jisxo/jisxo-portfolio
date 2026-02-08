@@ -56,7 +56,7 @@ export default function ResumePage() {
             {/* A4 Resume Container */}
             <Paper
                 shadow="md"
-                p={60} // Aggressive padding
+                p={110} // Doubled from previous comfortable state, maxed out for 2rd page fit
                 className="resume-container"
                 bg="white"
                 onClick={(e) => e.stopPropagation()}
@@ -70,19 +70,19 @@ export default function ResumePage() {
                 }}
             >
                 {/* Header - Compact Row */}
-                <Group justify="space-between" align="flex-end" mb={50}>
+                <Group justify="space-between" align="flex-end" mb={40}>
                     <div>
-                        <Title order={1} fz={28} fw={900} style={{ letterSpacing: '-0.5px' }}>{personal.name}</Title>
-                        <Text fz={13} fw={700} c="blue.8" tt="uppercase" style={{ letterSpacing: '1px' }}>{personal.role}</Text>
+                        <Title order={1} fz={26} fw={900} style={{ letterSpacing: '-0.5px' }}>{personal.name}</Title>
+                        <Text fz={12} fw={700} c="blue.8" tt="uppercase" style={{ letterSpacing: '1px' }}>{personal.role}</Text>
                     </div>
                     <Group gap="xl" wrap="nowrap">
                         <Stack gap={2} align="flex-end" style={{ borderRight: '1px solid var(--mantine-color-gray-2)', paddingRight: '15px' }}>
-                            <Text fz={10} c="dimmed">{personal.phone}</Text>
-                            <Text fz={10} c="dimmed" component="a" href={`mailto:${personal.email}`}>{personal.email}</Text>
+                            <Text fz={9} c="dimmed">{personal.phone}</Text>
+                            <Text fz={9} c="dimmed" component="a" href={`mailto:${personal.email}`}>{personal.email}</Text>
                         </Stack>
                         <Stack gap={2} align="flex-end">
-                            <Text fz={10} c="dimmed" component="a" href={`https://github.com/${personal.github}`}>github.com/{personal.github}</Text>
-                            <Text fz={10} c="dimmed" component="a" href={personal.portfolioUrl.startsWith('http') ? personal.portfolioUrl : `https://${personal.portfolioUrl}`}>
+                            <Text fz={9} c="dimmed" component="a" href={`https://github.com/${personal.github}`}>github.com/{personal.github}</Text>
+                            <Text fz={9} c="dimmed" component="a" href={personal.portfolioUrl.startsWith('http') ? personal.portfolioUrl : `https://${personal.portfolioUrl}`}>
                                 {personal.portfolioUrl.replace(/^https?:\/\//, '')}
                             </Text>
                         </Stack>
@@ -90,30 +90,30 @@ export default function ResumePage() {
                 </Group>
 
                 {/* Summary */}
-                <Box mb={50}>
+                <Box mb={40}>
                     <SectionTitle title="Summary" />
-                    <Text fz={11} lh={1.6} c="dark.9" style={{ whiteSpace: 'pre-line', fontSize: '10.5pt' }}>
+                    <Text fz={10.5} lh={1.5} c="dark.9" style={{ whiteSpace: 'pre-line' }}>
                         {summary}
                     </Text>
                 </Box>
 
                 {/* Skills */}
-                <Box mb={50}>
+                <Box mb={40}>
                     <SectionTitle title="Technical Skills" />
                     <Grid gutter="xs">
                         {skills.map((skillCat, idx) => (
                             <React.Fragment key={idx}>
-                                <Grid.Col span={3}><Text fz={11} fw={700} style={{ fontSize: '10.5pt' }}>{skillCat.title}</Text></Grid.Col>
-                                <Grid.Col span={9}><Text fz={11} style={{ fontSize: '10.5pt' }}>{skillCat.skills.join(', ')}</Text></Grid.Col>
+                                <Grid.Col span={3}><Text fz={10.5} fw={700}>{skillCat.title}</Text></Grid.Col>
+                                <Grid.Col span={9}><Text fz={10.5}>{skillCat.skills.join(', ')}</Text></Grid.Col>
                             </React.Fragment>
                         ))}
                     </Grid>
                 </Box>
 
                 {/* Work Experience */}
-                <Box mb={50}>
+                <Box mb={40}>
                     <SectionTitle title="Work Experience" />
-                    <Stack gap={30}>
+                    <Stack gap={25}>
                         {experience.map((exp, idx) => (
                             <ExperienceItem
                                 key={idx}
@@ -123,7 +123,7 @@ export default function ResumePage() {
                                 summary={exp.summary}
                             >
                                 {exp.bullets && (
-                                    <List fz={11} spacing={6} withPadding listStyleType="disc" style={{ fontSize: '10.5pt' }}>
+                                    <List fz={10.5} spacing={4} withPadding listStyleType="disc">
                                         {exp.bullets.map((bullet, bIdx) => (
                                             <List.Item key={bIdx}>{bullet}</List.Item>
                                         ))}
@@ -136,9 +136,9 @@ export default function ResumePage() {
 
                 {/* Projects */}
                 <div className="page-break" />
-                <Box mb={50} mt={30}>
+                <Box mb={40} mt={30}>
                     <SectionTitle title="Key Projects" />
-                    <Stack gap={35}>
+                    <Stack gap={30}>
                         {projects.map((project, index) => (
                             <ProjectItem
                                 key={index}
