@@ -33,7 +33,7 @@ export default function ResumePage() {
             <style jsx global>{`
                 @media print {
                     @page {
-                        margin: 0;
+                        margin: 21.2mm 21.2mm 10.6mm 21.2mm; /* 80px Top, 80px Sides, 40px Bottom */
                         size: A4;
                     }
                     body {
@@ -55,11 +55,11 @@ export default function ResumePage() {
                     }
                     .resume-container {
                         margin: 0 !important;
-                        padding: 21.2mm !important; /* Exactly 80px equivalent for A4 */
+                        padding: 0 !important; /* Managed by @page margins for better multi-page symmetry */
                         box-shadow: none !important;
                         border: none !important;
-                        width: 210mm !important;
-                        min-height: 297mm !important;
+                        width: 100% !important;
+                        min-height: auto !important;
                         box-sizing: border-box !important;
                         background: white !important;
                     }
@@ -98,7 +98,9 @@ export default function ResumePage() {
             {/* A4 Resume Container */}
             <Paper
                 shadow="md"
-                p={80} // Set exactly to 80px as requested
+                pt={80} // 80px Top
+                pb={40} // 40px Bottom
+                px={80} // 80px Sides
                 className="resume-container"
                 bg="white"
                 onClick={(e) => e.stopPropagation()}
