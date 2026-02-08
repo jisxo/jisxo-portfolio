@@ -11,6 +11,16 @@ body {
 }
 
 @media print {
+   @page {
+      margin: 21.2mm 21.2mm 10.6mm 21.2mm;
+      /* 80px Top, 80px Sides, 40px Bottom */
+      size: A4;
+   }
+
+   body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+   }
 
    /* Hide Mantine AppShell Header, Navbar, and other non-print elements */
    .mantine-AppShell-header,
@@ -52,6 +62,8 @@ body {
       overflow: visible !important;
       padding: 0 !important;
       margin: 0 !important;
+      background: white !important;
+      width: 100% !important;
    }
 
    /* Resume Specific Overrides */
@@ -61,9 +73,11 @@ body {
       border: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      /* Let specific padding handle it if needed, or controlled by @page */
       max-width: 100% !important;
       width: 100% !important;
+      min-height: auto !important;
+      background: white !important;
+      box-sizing: border-box !important;
    }
 
    /* Mantine Paper overrides specifically */
@@ -77,8 +91,7 @@ body {
       page-break-before: always !important;
       break-before: page !important;
       display: block !important;
-      height: 1px !important;
-      visibility: hidden;
-      margin-top: 2rem;
+      height: 0 !important;
+      margin: 0 !important;
    }
 }
