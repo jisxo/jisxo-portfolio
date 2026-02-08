@@ -3,7 +3,7 @@ import { Project } from './types';
 export const restaurantProject: Project = {
     title: '실시간 F&B 트렌드 분석 및 맛집 랭킹 플랫폼 \'HIPP\'',
     duration: '2022.11 - 2023.05, 2023.12-2024.01',
-    role: '데이터 엔지니어 (Full-Stack)',
+    role: '데이터 엔지니어 (풀스택)',
     description: "네이버 검색량 및 리뷰 생성 데이터를 실시간 분석하여 광고 없는 '진짜 맛집'을 발굴하는 데이터 기반 랭킹 서비스",
     overview: {
         background: "기존 지도 플랫폼의 평점 데이터는 누적 수치 위주라 현재 시점의 폭발적인 유행과 입소문을 실시간으로 포착하기 어려웠습니다.",
