@@ -30,6 +30,48 @@ export default function ResumePage() {
             style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'zoom-out' }}
             onClick={handleBackgroundClick}
         >
+            <style jsx global>{`
+                @media print {
+                    @page {
+                        margin: 0;
+                        size: A4;
+                    }
+                    body {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        -webkit-print-color-adjust: exact;
+                        print-color-adjust: exact;
+                    }
+                    .resume-wrapper {
+                        display: block !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        background: white !important;
+                        width: 100% !important;
+                        height: auto !important;
+                    }
+                    .no-print {
+                        display: none !important;
+                    }
+                    .resume-container {
+                        margin: 0 !important;
+                        padding: 21.2mm !important; /* Exactly 80px equivalent for A4 */
+                        box-shadow: none !important;
+                        border: none !important;
+                        width: 210mm !important;
+                        min-height: 297mm !important;
+                        box-sizing: border-box !important;
+                        background: white !important;
+                    }
+                    .page-break {
+                        page-break-before: always !important;
+                        break-before: page !important;
+                        display: block !important;
+                        height: 0 !important;
+                        margin: 0 !important;
+                    }
+                }
+            `}</style>
             {/* Print Button - Hidden when printing */}
             <Group mb="lg" className="no-print" onClick={(e) => e.stopPropagation()}>
                 <Button
