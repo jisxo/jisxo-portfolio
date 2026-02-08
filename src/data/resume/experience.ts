@@ -26,12 +26,7 @@ export const experienceData: Experience[] = [
         company: '씨에스리 (CSLEE)',
         role: '빅데이터 교육 기술 조교',
         period: '2020.08 - 2020.12',
-        summary: '공공 빅데이터 청년 인턴십 확대운영 기술 지원',
-        bullets: [
-            '기획/분석/시각화 교육과정 실습 지원',
-            '기술적 질의응답'
-        ],
-        skills: ['R', 'Python', 'Q-GIS', 'SQL']
+        summary: '공공 빅데이터 청년 인턴십 확대운영 기술 지원'
     },
     {
         company: '경찰청',
