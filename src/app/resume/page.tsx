@@ -160,10 +160,8 @@ export default function ResumePage() {
                         <SectionTitle title="Education" />
                         {education.map((edu, idx) => (
                             <Box key={idx} mb="sm">
-                                <Group justify="space-between" align="baseline" mb={2}>
-                                    <Text fw={700} fz={12}>{edu.school}</Text>
-                                    <Text fz={11} c="dimmed">{edu.period}</Text>
-                                </Group>
+                                <Text fw={700} fz={12} mb={2}>{edu.school}</Text>
+                                <Text fz={11} c="dimmed" mb={2}>{edu.period}</Text>
                                 <Text fz={12}>{edu.degree}</Text>
                             </Box>
                         ))}

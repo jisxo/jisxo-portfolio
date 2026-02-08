@@ -8,7 +8,6 @@ export const educationData: Education[] = [
     },
     {
         school: '해성국제컨벤션고등학교',
-        degree: '졸업',
         period: '2011.03 - 2014.02'
     }
 ];
