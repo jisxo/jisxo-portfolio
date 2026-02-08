@@ -94,20 +94,14 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             </AppShell.Navbar>
 
             <AppShell.Main>
-                {/* Prevent hydration mismatch by rendering a stable structure until mounted */}
-                {!mounted ? (
-                    <Container size="lg">
-                        {children}
-                    </Container>
-                ) : (
-                    pathname?.includes('/resume') ? (
-                        children
-                    ) : (
-                        <Container size="lg">
-                            {children}
-                        </Container>
-                    )
-                )}
+                <Container
+                    size="lg"
+                    fluid={pathname?.includes('/resume')}
+                    p={pathname?.includes('/resume') ? 0 : 'md'}
+                    style={{ maxWidth: pathname?.includes('/resume') ? '100%' : undefined }}
+                >
+                    {children}
+                </Container>
             </AppShell.Main>
         </AppShell>
     );
