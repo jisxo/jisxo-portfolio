@@ -1,10 +1,10 @@
 import { Project } from './types';
 
 export const amazonProject: Project = {
-    title: '아마존 글로벌 광고 비딩 및 키워드 관리 RPA 시스템 구축',
+    title: '글로벌 아마존 광고 운영 자동화 RPA 솔루션',
     duration: '2023.04 - 2023.10',
     role: '풀스택 개발자',
-    description: 'Python과 Airflow를 활용해 아마존 10개국 광고 운영 프로세스를 자동화하여, 월 150시간의 수동 업무를 2.5시간으로 98% 단축한 RPA 프로젝트.',
+    description: '10개국 글로벌 마켓의 아마존 광고 입찰 및 키워드 관리 업무의 비효율을 해결하기 위해, API 연동과 워크플로우 자동화로 운영 공수를 98% 절감한 RPA 시스템입니다.',
     image: '/images/thumbnails/amazon_rpa.png',
     images: [
         { src: '/images/rpa_fe.png', caption: 'RPA 운영/관리 대시보드 (Django)' },

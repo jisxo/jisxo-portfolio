@@ -1,10 +1,10 @@
 import { Project } from './types';
 
 export const integrationProject: Project = {
-    title: '대기업 제조사, 이기종 보안 로그 통합 및 이상징후 탐지 파이프라인 구축',
+    title: '제조업 보안 로그 통합 및 전사 데이터 표준화 플랫폼 구축',
     duration: '2022.03 - 2022.09',
     role: '데이터 엔지니어 (ETL 구축)',
-    description: '5종 이상의 이기종 보안 로그를 통합하는 ETL 파이프라인을 구축하고, 데이터 중복 문제를 기술적으로 해결하여 무결성 100%를 달성한 프로젝트.',
+    description: '이기종 보안 장비에서 발생하는 방대한 로그를 단일 체계로 통합 분석하기 위해, 데이터 정규화와 중복 제거 로직이 핵심인 고해상도 ETL 파이프라인을 구축한 프로젝트입니다.',
     image: '/images/thumbnails/data_integration.png',
     domain: 'Enterprise Security & IT Operations',
     tags: ['Python', 'ETL Pipeline', 'Log Analysis Platform', 'Docker', 'Apache Airflow', 'Data Standardization', 'Anomaly Detection'],

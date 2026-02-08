@@ -1,10 +1,10 @@
 import { Project } from './types';
 
 export const restaurantProject: Project = {
-    title: 'F&B 실시간 트렌드 랭킹 솔루션 \'HIPP\' 개발',
+    title: '실시간 F&B 트렌드 분석 및 맛집 랭킹 플랫폼 \'HIPP\'',
     duration: '2022.11 - 2023.05, 2023.12-2024.01',
     role: '데이터 엔지니어 (Full-Stack)',
-    description: '단순 평점순이 아닌, 네이버 키워드 검색량과 리뷰 생성 속도를 분석하여 \'현재 가장 뜨고 있는 맛집\'을 발굴하는 실시간 랭킹 시스템.',
+    description: '단순 평점 데이터를 넘어 네이버 데이터랩 검색량과 리뷰 생성 속도를 실시간으로 분석하여, 현재 가장 핫한 장소를 발굴하는 데이터 기반 트렌드 랭킹 서비스입니다.',
     image: '/images/thumbnails/restaurant_dw.png',
     images: [
         { src: '/images/hipp_fe.png', caption: '트렌드 랭킹 대시보드 UI' },

@@ -1,11 +1,11 @@
 import { Project } from './types';
 
 export const retailGnnProject: Project = {
-    title: 'GNN 기반 리테일 프롭테크 양방향 매칭 솔루션 개발',
+    title: '팝업스토어 공간-브랜드 양방향 AI 추천 엔진 개발',
     duration: '2024.05 - 2024.11',
     role: `AI & 데이터 엔지니어
     (Graph Modeling)`,
-    description: "팝업스토어 플랫폼 내 '공간'과 '브랜드' 데이터를 양방향으로 매칭해주는 AI 추천 솔루션 구축 프로젝트입니다. 데이터 간의 관계와 속성을 동시에 학습하는 GNN 기술을 통해 기존 추천 시스템의 한계를 극복했습니다.",
+    description: "리테일 프롭테크 플랫폼에서 공간 소유주와 브랜드 운영자를 최적으로 매칭해주기 위해, 데이터 간의 복합 관계를 학습하는 GNN 알고리즘 기반의 추천 시스템을 구축한 프로젝트입니다.",
     image: '/images/thumbnails/retail_gnn.png',
     domain: 'PropTech & Retail AI',
     tags: ['GNN', 'GraphSAGE', 'PinSAGE', 'Python', 'PyTorch Geometric', 'Cold-Start Optimization'],

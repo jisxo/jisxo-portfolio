@@ -1,10 +1,10 @@
 import { Project } from './types';
 
 export const logProject: Project = {
-    title: '대기업 제조사, 보안 로그 분석 및 이상징후 탐지 파이프라인 구축',
+    title: '전사 통합 보안 모니터링 및 이상탐지 자동화',
     duration: '2021.06 - 2021.11',
     role: '데이터 엔지니어 (수집/전처리/EDA)',
-    description: '외부 발송 메일 로그의 수집·전처리 과정을 100% 자동화하고, EDA를 통해 내부 탐지 모델의 기초를 마련한 데이터 엔지니어링 프로젝트.',
+    description: '외부 발송 메일 로그 등 보안 로그 수집의 수작업을 제로화하고, 대용량 로그 분석을 통해 보안 관제 고도화의 기초가 되는 탐지 룰과 자동화 체계를 수립한 프로젝트입니다.',
     image: '/images/thumbnails/log_analysis.png',
     domain: 'Enterprise Information Security',
     tags: ['Python', 'Pandas', 'ETL Pipeline', 'Docker', 'Apache Airflow', 'Data Analysis (EDA)', 'Anomaly Detection'],

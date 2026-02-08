@@ -1,10 +1,10 @@
 import { Project } from './types';
 
 export const insiderProject: Project = {
-    title: '대기업 제조사, 핵심 기술 자산 보호를 위한 내부자 위협 탐지 및 데이터 파이프라인 구축',
+    title: '기업 핵심 기술 보호를 위한 내부자 위협 탐지 시스템',
     duration: '2021.12 - 2022.02',
     role: '데이터 엔지니어 (Airflow/NLP)',
-    description: '제조업 핵심 공정 기술 자산을 보호하기 위해, 사내 메신저·이메일 등 비정형 텍스트에서 내부자 위협을 조기에 포착하는 Airflow 파이프라인을 구축.',
+    description: '사내 메신저 및 이메일 등 비정형 텍스트 데이터를 분석하여 기술 유출 징후를 선제적으로 포착하기 위해, NLP 기반의 자동화 분석 파이프라인을 구축한 프로젝트입니다.',
     image: '/images/thumbnails/insider_threat.png',
     domain: 'Enterprise Security & Insider Threat Detection',
     tags: ['Python', 'Docker', 'Apache Airflow', 'NLP', 'ETL Pipeline', 'Performance Optimization'],

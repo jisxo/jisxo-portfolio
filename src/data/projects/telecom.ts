@@ -1,11 +1,11 @@
 import { Project } from './types';
 
 export const telecomProject: Project = {
-    title: '대기업 통신사, Airflow 파이프라인 이벤트 기반 재설계 및 AI 모델 학습데이터셋 구축',
+    title: '통신사 지능형 보안 관제 시스템 고도화',
     duration: '2025.04 - 2025.10',
     role: `데이터 엔지니어 
     (ETL / 파이프라인 최적화 / 데이터 라벨링)`,
-    description: '배치 작업 간의 불안정한 시간 기반 의존성을 Event-Driven 아키텍처로 재설계하여 스케줄링 경합 문제를 원천 차단하고, AI 모델 고도화를 위한 고품질 학습 데이터셋을 축적한 프로젝트.',
+    description: '통신사 보안 로그 분석의 실시간성과 정확도를 높이기 위해, 기존 스케줄링 방식의 한계를 극복하는 이벤트 기반 파이프라인과 이상탐지 학습용 데이터셋을 구축한 프로젝트입니다.',
     image: '/images/thumbnails/telecom_log.png',
     domain: 'AI Security, Anomaly Detection',
     tags: ['Apache Airflow', 'Python', 'ExternalTaskSensor', 'Docker', 'Linux', 'OpenSearch', 'Data Labeling'],
