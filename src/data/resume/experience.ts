@@ -37,21 +37,12 @@ export const experienceData: Experience[] = [
         company: '경찰청',
         role: '치안빅데이터정책담당관실 / 인턴',
         period: '2019.09 - 2020.02',
-        summary: '치안 데이터 분석 과제 발굴 및 분석 수행',
-        bullets: [
-            '치안고객만족도조사 VOC 분석',
-            '치안 데이터 분석 보조 및 시각화'
-        ],
-        skills: ['R']
+        summary: '치안 데이터 분석 과제 발굴 및 분석 수행'
     },
     {
         company: '패스트캠퍼스',
         role: '빅데이터 교육 기술 조교',
         period: '2018.11 - 2018.12, 2019.03',
-        summary: '데이터 분석 교육 과정 기술 지원',
-        bullets: [
-            'R, SQL, 데이터 전처리 등 다수의 CAMP 및 기업교육 조교'
-        ],
-        skills: ['R', 'SQL']
+        summary: '데이터 분석 교육 과정 기술 지원'
     }
 ];
