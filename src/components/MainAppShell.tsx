@@ -57,7 +57,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
                     {/* Logo for mobile centered or left */}
                     <Group gap={5} hiddenFrom="sm">
                         <Link href="/" style={{ textDecoration: 'none' }}>
-                            <Text size="lg" fw={700} c="black">{siteConfig.name.split('|')[1]?.trim() || 'Jiseo'}.Dev</Text>
+                            <Text size="lg" fw={700} c="dark">{siteConfig.name.split('|')[1]?.trim() || 'Jiseo'}.Dev</Text>
                         </Link>
                     </Group>
 
@@ -71,9 +71,8 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
                         size="lg"
                         aria-label="Toggle color scheme"
                     >
-                        {/* Prevent hydration mismatch by rendering default (Dark->Sun) until mounted */}
                         {!mounted ? (
-                            <IconSun size={18} />
+                            <div style={{ width: 18, height: 18 }} />
                         ) : (
                             colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />
                         )}
@@ -96,7 +95,7 @@ export function MainAppShell({ children }: { children: React.ReactNode }) {
             <AppShell.Main>
                 <Container
                     size="lg"
-                    fluid={pathname?.includes('/resume')}
+                    fluid={!!pathname?.includes('/resume')}
                     p={pathname?.includes('/resume') ? 0 : 'md'}
                     style={{ maxWidth: pathname?.includes('/resume') ? '100%' : undefined }}
                 >
