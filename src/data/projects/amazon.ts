@@ -4,7 +4,12 @@ export const amazonProject: Project = {
     title: '글로벌 아마존 광고 운영 자동화 RPA 솔루션',
     duration: '2023.04 - 2023.10',
     role: '풀스택 개발자',
-    description: '10개국 글로벌 마켓의 아마존 광고 입찰 및 키워드 관리 업무의 비효율을 해결하기 위해, API 연동과 워크플로우 자동화로 운영 공수를 98% 절감한 RPA 시스템입니다.',
+    description: "Amazon Advertising API와 Airflow를 연동하여 10개국 광고 입찰 및 관리를 자동화하고 운영 효율을 98% 개선한 시스템",
+    overview: {
+        background: "미국, 일본 등 10개국의 방대한 광고 캠페인을 소수 인원이 관리하며 발생하는 운영 리소스 과부하와 휴먼 에러가 심각한 문제였습니다.",
+        objective: "기존의 수동 입찰 및 키워드 관리 프로세스를 24시간 자동 가동되는 알고리즘 기반 RPA 체제로 전환하여 비즈니스 다운타임을 제로화하고자 했습니다.",
+        outcome: "월 150시간의 수작업을 2.5시간으로 대폭 단축하였으며, 데이터 대시보드를 통해 실시간 성과 지표 가시성을 확보했습니다."
+    },
     image: '/images/thumbnails/amazon_rpa.png',
     images: [
         { src: '/images/rpa_fe.png', caption: 'RPA 운영/관리 대시보드 (Django)' },

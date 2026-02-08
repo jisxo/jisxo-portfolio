@@ -4,7 +4,12 @@ export const insiderProject: Project = {
     title: '기업 핵심 기술 보호를 위한 내부자 위협 탐지 시스템',
     duration: '2021.12 - 2022.02',
     role: '데이터 엔지니어 (Airflow/NLP)',
-    description: '사내 메신저 및 이메일 등 비정형 텍스트 데이터를 분석하여 기술 유출 징후를 선제적으로 포착하기 위해, NLP 기반의 자동화 분석 파이프라인을 구축한 프로젝트입니다.',
+    description: "사내 메신저 및 이메일 비정형 텍스트에서 기술 유출 징후를 문맥 기반으로 포착하는 Airflow 분석 시스템",
+    overview: {
+        background: "방대한 비정형 메신저 데이터를 수동으로 모니터링하는 데 한계가 있었고, 대용량 텍스트 처리 시 서버 메모리 병목 현상이 자주 발생했습니다.",
+        objective: "단순 키워드 매칭을 넘어 사용자 행위의 문맥(Context)을 이해하고, 대규모 텍스트 벡터화 과정의 안정성을 확보하여 실시간 위협 탐지 체계를 구축하고자 했습니다.",
+        outcome: "분석 프로세스를 100% 자동화하여 운영 리소스를 최소화하였으며, JSON 분할 처리 기법으로 대용량 데이터 환경에서도 안정적인 분석 성능을 확보했습니다."
+    },
     image: '/images/thumbnails/insider_threat.png',
     domain: 'Enterprise Security & Insider Threat Detection',
     tags: ['Python', 'Docker', 'Apache Airflow', 'NLP', 'ETL Pipeline', 'Performance Optimization'],

@@ -4,7 +4,12 @@ export const integrationProject: Project = {
     title: '제조업 보안 로그 통합 및 전사 데이터 표준화 플랫폼 구축',
     duration: '2022.03 - 2022.09',
     role: '데이터 엔지니어 (ETL 구축)',
-    description: '이기종 보안 장비에서 발생하는 방대한 로그를 단일 체계로 통합 분석하기 위해, 데이터 정규화와 중복 제거 로직이 핵심인 고해상도 ETL 파이프라인을 구축한 프로젝트입니다.',
+    description: "5종 이상의 이기종 보안 장비 로그를 표준 스키마로 통합하고 데이터 정합성 100%를 달성한 ETL 파이프라인",
+    overview: {
+        background: "장비마다 서로 다른 로그 포맷과 전송 과정에서의 중복 적재 문제로 인해 전사 통합 보안 분석의 신뢰도가 낮은 상황이었습니다.",
+        objective: "이기종 로그를 단일 스키마로 표준화하고, 고유 키 기반의 중복 제거 로직을 통해 데이터의 무결성을 완벽히 보장하는 ETL 파이프라인을 구축하는 것이 목표였습니다.",
+        outcome: "통합 보안 관제의 필수 기반인 '믿을 수 있는 데이터' 체계를 완성하였고, 정합성 100%를 달성하여 이상탐지 모델의 오탐률을 획기적으로 낮췄습니다."
+    },
     image: '/images/thumbnails/data_integration.png',
     domain: 'Enterprise Security & IT Operations',
     tags: ['Python', 'ETL Pipeline', 'Log Analysis Platform', 'Docker', 'Apache Airflow', 'Data Standardization', 'Anomaly Detection'],

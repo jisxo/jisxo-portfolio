@@ -4,7 +4,12 @@ export const restaurantProject: Project = {
     title: '실시간 F&B 트렌드 분석 및 맛집 랭킹 플랫폼 \'HIPP\'',
     duration: '2022.11 - 2023.05, 2023.12-2024.01',
     role: '데이터 엔지니어 (Full-Stack)',
-    description: '단순 평점 데이터를 넘어 네이버 데이터랩 검색량과 리뷰 생성 속도를 실시간으로 분석하여, 현재 가장 핫한 장소를 발굴하는 데이터 기반 트렌드 랭킹 서비스입니다.',
+    description: "네이버 검색량 및 리뷰 생성 데이터를 실시간 분석하여 광고 없는 '진짜 핫플레이스'를 발굴하는 데이터 기반 랭킹 서비스",
+    overview: {
+        background: "기존 지도 플랫폼의 평점 데이터는 누적 수치 위주라 현재 시점의 폭발적인 유행(Viral)을 실시간으로 포착하기 어려웠습니다.",
+        objective: "검색 정보와 리뷰 생성 패턴을 실시간으로 결합하여 정량화된 '트렌드 스코어'를 산출하고 이를 대시보드로 시각화하는 것이 목표였습니다.",
+        outcome: "Airflow 기반의 하이브리드 수집 시스템을 통해 매일 아침 최신 트렌드 랭킹을 자동 갱신하는 완성도 높은 데이터 프로덕트를 구현했습니다."
+    },
     image: '/images/thumbnails/restaurant_dw.png',
     images: [
         { src: '/images/hipp_fe.png', caption: '트렌드 랭킹 대시보드 UI' },

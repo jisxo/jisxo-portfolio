@@ -14,6 +14,11 @@ interface StarContent {
 interface ProjectCardProps {
     title: string;
     description: string;
+    overview?: {
+        background: string;
+        objective: string;
+        outcome: string;
+    };
     image: string;
     domain?: string;
     role?: string;
@@ -36,7 +41,7 @@ const renderTextWithHighlights = (text: string) => {
     });
 };
 
-export function ProjectCard({ title, description, image, domain, role, images, tags, githubUrl, demoUrl, star, duration, contributions }: ProjectCardProps) {
+export function ProjectCard({ title, description, overview, image, domain, role, images, tags, githubUrl, demoUrl, star, duration, contributions }: ProjectCardProps) {
     const [opened, { open, close }] = useDisclosure(false);
 
     return (
@@ -105,7 +110,33 @@ export function ProjectCard({ title, description, image, domain, role, images, t
 
                 <Box mb="xl">
                     <Text size="xl" fw={800} mb="xs" style={{ letterSpacing: '-0.5px' }}>Project Overview</Text>
-                    <Text size="md" lh={1.7} style={{ wordBreak: 'keep-all' }}>{description}</Text>
+                    {overview ? (
+                        <Stack gap="md">
+                            <Box>
+                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
+                                    Project Context
+                                </Text>
+                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.background}</Text>
+                            </Box>
+                            <Box>
+                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
+                                    Key Objective
+                                </Text>
+                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.objective}</Text>
+                            </Box>
+                            <Box>
+                                <Text size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
+                                    Outcome & Impact
+                                </Text>
+                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.outcome}</Text>
+                            </Box>
+                        </Stack>
+                    ) : (
+                        <Text size="md" lh={1.7} style={{ wordBreak: 'keep-all' }}>{description}</Text>
+                    )}
                 </Box>
 
 

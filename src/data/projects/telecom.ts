@@ -5,7 +5,12 @@ export const telecomProject: Project = {
     duration: '2025.04 - 2025.10',
     role: `데이터 엔지니어 
     (ETL / 파이프라인 최적화 / 데이터 라벨링)`,
-    description: '통신사 보안 로그 분석의 실시간성과 정확도를 높이기 위해, 기존 스케줄링 방식의 한계를 극복하는 이벤트 기반 파이프라인과 이상탐지 학습용 데이터셋을 구축한 프로젝트입니다.',
+    description: '이벤트 기반 아키텍처 재설계를 통한 스케줄링 안정화 및 AI 이상탐지용 고품질 데이터셋 구축',
+    overview: {
+        background: "대규모 보안 로그를 처리하는 기존 파이프라인의 시간 기반 스케줄링 방식이 장애 발생의 주요 원인이었습니다.",
+        objective: "배치 간의 논리적 선후관계를 보장하는 이벤트 기반 구조로 전환하고, AI 모델의 정확도를 높이기 위한 정답 데이터셋을 확보하는 것이 목표였습니다.",
+        outcome: "배치 작업 실패율 0% 달성 및 실무 전문가가 검증한 정탐 데이터셋을 핵심 기술 자산으로 구축하였습니다."
+    },
     image: '/images/thumbnails/telecom_log.png',
     domain: 'AI Security, Anomaly Detection',
     tags: ['Apache Airflow', 'Python', 'ExternalTaskSensor', 'Docker', 'Linux', 'OpenSearch', 'Data Labeling'],

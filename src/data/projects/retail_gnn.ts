@@ -5,7 +5,12 @@ export const retailGnnProject: Project = {
     duration: '2024.05 - 2024.11',
     role: `AI & 데이터 엔지니어
     (Graph Modeling)`,
-    description: "리테일 프롭테크 플랫폼에서 공간 소유주와 브랜드 운영자를 최적으로 매칭해주기 위해, 데이터 간의 복합 관계를 학습하는 GNN 알고리즘 기반의 추천 시스템을 구축한 프로젝트입니다.",
+    description: "GNN(그래프 신경망) 기술을 활용하여 공간과 브랜드 간의 복잡한 물리적/추상적 연관성을 학습하는 양방향 매칭 솔루션",
+    overview: {
+        background: "기존의 단순 필터링 방식은 정적인 속성 위주로 매칭되어, 브랜드와 공간의 숨겨진 유기적 관계를 반영하지 못했습니다.",
+        objective: "공간, 브랜드, 사용자 행동 데이터를 그래프 구조로 모델링하여 신규 데이터(Cold-Start)에 대해서도 유연하고 정확한 추천을 제공하고자 했습니다.",
+        outcome: "PinSAGE/GraphSAGE 하이브리드 모델을 통해 추천 다양성을 확보하였고, 실제 서비스 탑재 가능한 수준의 PoC를 성공적으로 완료했습니다."
+    },
     image: '/images/thumbnails/retail_gnn.png',
     domain: 'PropTech & Retail AI',
     tags: ['GNN', 'GraphSAGE', 'PinSAGE', 'Python', 'PyTorch Geometric', 'Cold-Start Optimization'],
