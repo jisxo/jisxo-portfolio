@@ -1,7 +1,7 @@
 import { Project } from './types';
 
 export const telecomProject: Project = {
-    title: '통신사 지능형 데이터 유출 방지 시스템 운영 및 최적화',
+    title: '통신사, 지능형 데이터 유출 방지 시스템 운영 및 최적화',
     duration: '2025.04 - 2025.10',
     role: `데이터 엔지니어 
     (운영 / 파이프라인 최적화 / 데이터 라벨링)`,
