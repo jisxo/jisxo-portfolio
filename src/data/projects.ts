@@ -12,11 +12,11 @@ export type { Project, StarContent };
 // 모듈화된 프로젝트 데이터를 최신순으로 배열합니다.
 // 순서를 변경하려면 아래 배열의 순서만 바꾸면 됩니다.
 export const projects: Project[] = [
-    telecomProject,     // 2025.10
-    retailGnnProject,   // 2024.11 (New)
-    restaurantProject,  // 2024.02
-    amazonProject,      // 2023.10
-    integrationProject, // 2022.09
-    insiderProject,     // 2022.02
-    logProject          // 2021.11
+    telecomProject,     // 1. 통신사 (운영/안정성)
+    amazonProject,      // 2. 아마존 (자동화/성과)
+    retailGnnProject,   // 3. 리테일 GNN (기술/미래)
+    restaurantProject,
+    integrationProject,
+    insiderProject,
+    logProject
 ];
