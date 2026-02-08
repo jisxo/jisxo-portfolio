@@ -242,7 +242,7 @@ function SectionTitle({ title }: { title: string }) {
 
 function ExperienceItem({ company, role, period, summary, children }: any) {
     return (
-        <Box>
+        <Box style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
             <Group justify="space-between" mb={4}>
                 <Text fw={800} fz={14} style={{ letterSpacing: '-0.3px' }}>{company}</Text>
                 <Text fz={12} c="dimmed" fw={500}>{period}</Text>
@@ -256,7 +256,7 @@ function ExperienceItem({ company, role, period, summary, children }: any) {
 
 function ProjectItem({ title, role, desc, period, contributions }: any) {
     return (
-        <Box>
+        <Box style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
             <Group justify="space-between" mb={8} align="flex-start">
                 <Text fw={800} fz={15} style={{ flex: 1, letterSpacing: '-0.2px' }}>{title}</Text>
                 {period && <Text fz={11} c="dimmed" fw={500}>{period}</Text>}
