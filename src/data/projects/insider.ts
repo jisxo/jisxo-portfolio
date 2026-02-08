@@ -1,7 +1,7 @@
 import { Project } from './types';
 
 export const insiderProject: Project = {
-    title: '대기업 제조사, 기업 핵심 기술 보호를 위한 내부자 위협 탐지 시스템',
+    title: '지능형 보안 로그 분석 체계 내 비정형 데이터 분석 모듈 구축 (제조사)',
     duration: '2021.12 - 2022.02',
     role: '데이터 엔지니어 (Airflow/NLP)',
     description: "사내 메신저와 이메일 등 비정형 텍스트 로그를 분석하여, 단순 키워드 룰이 잡아내지 못하는 기술 유출 징후를 AI로 정밀 탐지하고 오탐을 필터링하는 신규 위협 탐지 시스템입니다.",

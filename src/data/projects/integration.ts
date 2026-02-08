@@ -1,7 +1,7 @@
 import { Project } from './types';
 
 export const integrationProject: Project = {
-    title: '대기업 제조사, 보안 로그 통합 및 전사 데이터 표준화 플랫폼 구축',
+    title: '지능형 보안 로그 분석 및 이상탐지 체계 통합 구축 (제조사)',
     duration: '2022.03 - 2022.09',
     role: '데이터 엔지니어 (ETL 구축)',
     description: "보안 장비 5종의 방대한 로그를 표준화하여 통합하고, AI 필터링을 통해 매일 수천 건에 달하는 룰 기반 오탐을 획기적으로 줄인 신규 이상탐지 플랫폼 구축 프로젝트입니다.",
