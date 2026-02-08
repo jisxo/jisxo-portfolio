@@ -157,7 +157,7 @@ export default function ResumePage() {
                 {/* Work Experience */}
                 <Box mb={40}>
                     <SectionTitle title="Work Experience" />
-                    <Stack gap={30}>
+                    <Stack gap={25}>
                         {experience.map((exp, idx) => (
                             <ExperienceItem
                                 key={idx}
@@ -167,9 +167,9 @@ export default function ResumePage() {
                                 summary={exp.summary}
                             >
                                 {exp.bullets && (
-                                    <List fz={12} spacing={8} withPadding listStyleType="disc">
+                                    <List fz={12} spacing={4} withPadding listStyleType="disc">
                                         {exp.bullets.map((bullet, bIdx) => (
-                                            <List.Item key={bIdx} style={{ lineHeight: 1.7 }}>{bullet}</List.Item>
+                                            <List.Item key={bIdx} style={{ lineHeight: 1.4 }}>{bullet}</List.Item>
                                         ))}
                                     </List>
                                 )}
@@ -180,7 +180,7 @@ export default function ResumePage() {
 
                 {/* Projects */}
                 <div className="page-break" />
-                <Box mb={40} mt={30}>
+                <Box mb={40}>
                     <SectionTitle title="Key Projects" />
                     <Stack gap={30}>
                         {projects.map((project, index) => (
@@ -243,12 +243,12 @@ function SectionTitle({ title }: { title: string }) {
 function ExperienceItem({ company, role, period, summary, children }: any) {
     return (
         <Box>
-            <Group justify="space-between" mb={8}>
-                <Text fw={800} fz={18} style={{ letterSpacing: '-0.3px' }}>{company}</Text>
+            <Group justify="space-between" mb={4}>
+                <Text fw={800} fz={14} style={{ letterSpacing: '-0.3px' }}>{company}</Text>
                 <Text fz={12} c="dimmed" fw={500}>{period}</Text>
             </Group>
-            <Text fz={14} fw={700} mb={10} c="dark.7">{role}</Text>
-            <Text fz={12} lh={1.7} mb={children ? 12 : 0} c="dark.8">{summary}</Text>
+            <Text fz={14} fw={700} mb={6} c="dark.7">{role}</Text>
+            <Text fz={12} lh={1.4} mb={children ? 8 : 0} c="dark.8">{summary}</Text>
             {children}
         </Box>
     );
