@@ -1,9 +1,7 @@
 @media print {
     @page {
-        margin-top: 20mm;
-        margin-bottom: 20mm;
-        margin-left: 15mm;
-        margin-right: 15mm;
+        margin: 0;
+        /* Let Paper padding handle the margins */
         size: auto;
     }
 
@@ -31,7 +29,7 @@
         margin: 0 !important;
         width: 100% !important;
         min-height: auto !important;
-        padding: 0 !important;
+        /* Remove the padding: 0 override to let p={80} work */
     }
 
     :global(.page-break) {

@@ -56,7 +56,7 @@ export default function ResumePage() {
             {/* A4 Resume Container */}
             <Paper
                 shadow="md"
-                p={110} // Doubled from previous comfortable state, maxed out for 2rd page fit
+                p={80} // Set exactly to 80px as requested
                 className="resume-container"
                 bg="white"
                 onClick={(e) => e.stopPropagation()}
