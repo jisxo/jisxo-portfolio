@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Title, Text, SimpleGrid, Card, Group, Badge, ThemeIcon, rem } from '@mantine/core';
+import { Container, Title, Text, SimpleGrid, Card, Group, Badge, ThemeIcon, rem, Stack } from '@mantine/core';
 import { IconDatabase, IconServer, IconChartBar, IconDeviceDesktop } from '@tabler/icons-react';
 import classes from './Skills.module.css';
 
@@ -9,8 +9,8 @@ import { skillCategories } from '@/data/resume/skills';
 export function Skills() {
     const skillsData = skillCategories;
     const cards = skillsData.map((category) => (
-        <Card key={category.title} shadow="sm" radius="md" withBorder className={classes.card} padding="xl">
-            <Group justify="space-between" mb="xs">
+        <Card key={category.title} shadow="sm" radius="md" withBorder className={classes.card} padding="lg">
+            <Group justify="space-between" mb="md">
                 <Text fz="lg" fw={700} className={classes.cardTitle} c="light-dark(var(--mantine-color-black), var(--mantine-color-white))">
                     {category.title}
                 </Text>
@@ -19,26 +19,46 @@ export function Skills() {
                 </ThemeIcon>
             </Group>
 
-            <Group gap={8} mt="md">
-                {category.skills.map((skill) => (
-                    <Badge key={skill} variant="light" color={category.color} size="lg" radius="sm">
-                        {skill}
-                    </Badge>
-                ))}
-            </Group>
+            <Stack gap="md">
+                {/* Tech Stack (Badges) - Top */}
+                <div>
+                    <Text size="xs" c="dimmed" fw={700} mb="xs" tt="uppercase">Tech Stack</Text>
+                    <Group gap={6}>
+                        {category.techStack.map((skill) => (
+                            <Badge key={skill} variant="light" color={category.color} size="md" radius="sm">
+                                {skill}
+                            </Badge>
+                        ))}
+                    </Group>
+                </div>
+
+                {/* Core Competencies (List) - Bottom */}
+                {category.descriptions && category.descriptions.length > 0 && (
+                    <div>
+                        <Text size="xs" c="dimmed" fw={700} mb="xs" tt="uppercase">Core Competencies</Text>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            {category.descriptions.map((desc, index) => (
+                                <Text key={index} size="sm" c="dimmed" style={{ lineHeight: 1.4 }}>
+                                    • {desc}
+                                </Text>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </Stack>
         </Card>
     ));
 
     return (
         <Container size="lg" py="xl" mt={50}>
             <Title order={2} ta="center" mb="lg">
-                Technical Skills
+                Technical Skills & Competencies
             </Title>
             <Text c="dimmed" ta="center" mb={50} maw={600} mx="auto">
-                데이터 엔지니어링부터 웹 개발까지, 넓고 깊은 경험을 보유하고 있습니다.
+                기술 스택과 이를 활용한 핵심 역량을 정리했습니다.
             </Text>
 
-            <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
+            <SimpleGrid cols={{ base: 1, md: 1 }} spacing="lg">
                 {cards}
             </SimpleGrid>
         </Container>

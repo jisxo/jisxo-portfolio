@@ -32,11 +32,13 @@
 
 .highlight {
     color: var(--mantine-primary-color-filled);
+    display: inline-block;
     position: relative;
     border-radius: var(--mantine-radius-sm);
-    padding: 2px 4px;
-    margin: 0;
+    padding: 2px 8px;
+    margin: 0 4px;
     background-color: light-dark(var(--mantine-color-blue-1), rgba(var(--mantine-color-blue-9), 0.3));
+    vertical-align: middle;
 }
 
 .description {

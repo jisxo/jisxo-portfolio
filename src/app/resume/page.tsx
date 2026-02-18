@@ -105,8 +105,19 @@ export default function ResumePage() {
                     <Grid gutter="xs">
                         {skills.map((skillCat, idx) => (
                             <React.Fragment key={idx}>
-                                <Grid.Col span={3}><Text fz={12} fw={700}>{skillCat.title}</Text></Grid.Col>
-                                <Grid.Col span={9}><Text fz={12}>{skillCat.skills.join(', ')}</Text></Grid.Col>
+                                <Grid.Col span={3}>
+                                    <Text fz={12} fw={700}>{skillCat.title}</Text>
+                                </Grid.Col>
+                                <Grid.Col span={9}>
+                                    <Text fz={12} fw={600} mb={4}>{skillCat.techStack.join(', ')}</Text>
+                                    {skillCat.descriptions && skillCat.descriptions.length > 0 && (
+                                        <List fz={11} c="dimmed" spacing={0} icon="•" style={{ lineHeight: 1.3 }}>
+                                            {skillCat.descriptions.map((desc, i) => (
+                                                <List.Item key={i}>{desc}</List.Item>
+                                            ))}
+                                        </List>
+                                    )}
+                                </Grid.Col>
                             </React.Fragment>
                         ))}
                     </Grid>
