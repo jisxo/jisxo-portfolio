@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Image, Text, Badge, Button, Group, Modal, Stack, Title, List, ThemeIcon, Box, Divider, Paper, SimpleGrid, Center } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Modal, Stack, Title, List, ThemeIcon, Box, Paper, SimpleGrid, Center } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconExternalLink, IconListCheck, IconBolt, IconTrophy, IconUser, IconCalendar, IconApps, IconNetwork, IconArrowDown } from '@tabler/icons-react';
 import classes from './ProjectCard.module.css';
@@ -15,9 +15,9 @@ interface ProjectCardProps {
     title: string;
     description: string;
     overview?: {
-        background: string;
-        objective: string;
-        outcome: string;
+        background: string | string[];
+        objective: string | string[];
+        outcome: string | string[];
     };
     image: string;
     domain?: string;
@@ -32,13 +32,37 @@ interface ProjectCardProps {
 }
 
 // Helper to render bold text from markdown-like syntax (**text**)
+const normalizeLineBreaks = (text: string) => text.replace(/\\n/g, '\n');
+
 const renderTextWithHighlights = (text: string) => {
-    return text.split(/(\*\*.*?\*\*)/).map((part, i) => {
+    return normalizeLineBreaks(text).split(/(\*\*.*?\*\*)/).map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
             return <Text key={i} span fw={800} c="blue.6" style={{ wordBreak: 'keep-all' }}>{part.slice(2, -2)}</Text>;
         }
         return part;
     });
+};
+
+const renderOverviewContent = (content: string | string[]) => {
+    if (Array.isArray(content)) {
+        return (
+            <Stack gap={6} pl="sm">
+                {content.map((item, idx) => (
+                    <Text key={idx} size="md" lh={1.6} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>
+                        • {renderTextWithHighlights(item)}
+                    </Text>
+                ))}
+            </Stack>
+        );
+    }
+
+    return (
+        <Box pl="sm">
+            <Text size="md" lh={1.6} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>
+                {renderTextWithHighlights(content)}
+            </Text>
+        </Box>
+    );
 };
 
 export function ProjectCard({ title, description, overview, image, domain, role, images, tags, githubUrl, demoUrl, star, duration, contributions }: ProjectCardProps) {
@@ -115,27 +139,27 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                             <Box>
                                 <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
-                                    Project Context
+                                    Problem
                                 </Text>
-                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.background}</Text>
+                                {renderOverviewContent(overview.background)}
                             </Box>
                             <Box>
                                 <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
-                                    Key Objective
+                                    Architecture & Approach
                                 </Text>
-                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.objective}</Text>
+                                {renderOverviewContent(overview.objective)}
                             </Box>
                             <Box>
                                 <Text component="div" size="xs" fw={800} c="dimmed" mb={2} style={{ textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--mantine-color-blue-6)' }}></div>
-                                    Outcome & Impact
+                                    Impact (Quantified)
                                 </Text>
-                                <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{overview.outcome}</Text>
+                                {renderOverviewContent(overview.outcome)}
                             </Box>
                         </Stack>
                     ) : (
-                        <Text size="md" lh={1.7} style={{ wordBreak: 'keep-all' }}>{description}</Text>
+                        <Text size="md" lh={1.7} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{normalizeLineBreaks(description)}</Text>
                     )}
                 </Box>
 
@@ -170,7 +194,7 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                                     <Text fw={800} size="lg" c="indigo.7">Situation & Challenge</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.situation)}</Text>
+                                    <Text size="md" lh={1.6} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.situation)}</Text>
                                 </Box>
                             </Paper>
 
@@ -185,7 +209,7 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                                     <Text fw={800} size="lg" c="blue.7">Action & Implementation</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.action)}</Text>
+                                    <Text size="md" lh={1.6} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.action)}</Text>
                                 </Box>
                             </Paper>
 
@@ -200,7 +224,7 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                                     <Text fw={800} size="lg" c="teal.7">Result & Impact</Text>
                                 </Group>
                                 <Box pl="xl" ml="xs">
-                                    <Text size="md" lh={1.6} style={{ wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.result)}</Text>
+                                    <Text size="md" lh={1.6} style={{ whiteSpace: 'pre-line', wordBreak: 'keep-all' }}>{renderTextWithHighlights(star.result)}</Text>
                                 </Box>
                             </Paper>
                         </Stack>
@@ -272,8 +296,8 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                     {duration && <Text size="xs" c="dimmed">{duration}</Text>}
                 </Group>
 
-                <Text size="sm" c="dimmed" lineClamp={3}>
-                    {description}
+                <Text size="sm" c="dimmed" lineClamp={3} style={{ whiteSpace: 'pre-line' }}>
+                    {normalizeLineBreaks(description)}
                 </Text>
 
                 <Group gap={5} mt="md" mb="md">
