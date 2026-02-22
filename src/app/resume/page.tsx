@@ -7,9 +7,8 @@ import { IconPrinter } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import { resumeData } from '@/data/resume';
 import { securityPlatformPhasedProject } from '@/data/projects/security_platform_phased';
+import { cryptoStreamingProject } from '@/data/projects/crypto_streaming';
 import { hiddenSpotMinioProject } from '@/data/projects/hidden_spot_minio';
-import { telecomProject } from '@/data/projects/telecom';
-import { amazonProject } from '@/data/projects/amazon';
 import { retailGnnProject } from '@/data/projects/retail_gnn';
 
 function cleanResumeText(text: string) {
@@ -37,7 +36,18 @@ export default function ResumePage() {
             ],
         },
         {
-            displayTitle: 'Hidden Spot 데이터 레이크',
+            displayTitle: '코인스트림 — 실시간 암호화폐 데이터 스트리밍 파이프라인',
+            role: cryptoStreamingProject.role,
+            period: cryptoStreamingProject.duration,
+            bullets: [
+                'Kafka 기반 시세·체결 데이터 스트리밍 파이프라인 구성',
+                'Spark Streaming을 활용한 이벤트 시간 기준 집계 구조 구현',
+                '워터마크 적용으로 지연 도착 데이터 처리',
+                '멱등성 기반 중복 제거 로직 설계 및 결과 저장 구조 분리',
+            ],
+        },
+        {
+            displayTitle: 'Hidden Spot — 데이터 레이크 기반 리뷰 분석 서비스',
             role: hiddenSpotMinioProject.role,
             period: hiddenSpotMinioProject.duration,
             bullets: [
@@ -48,28 +58,7 @@ export default function ResumePage() {
             ],
         },
         {
-            displayTitle: '통신사 파이프라인 안정화',
-            role: telecomProject.role,
-            period: telecomProject.duration,
-            bullets: [
-                'DAG 의존성 재설계를 통해 선행/후행 배치 경합 제거',
-                'ExternalTaskSensor 적용으로 실행 순서 제어 구조 구현',
-                '이메일 파싱 로직 수정 및 식별자 적재 구조 개선',
-                '40개 이상 문서 분류 체계 기반 라벨링 데이터 병합 및 중복 제거를 통한 학습 데이터 일관성 확보',
-            ],
-        },
-        {
-            displayTitle: '글로벌 광고 자동화',
-            role: amazonProject.role,
-            period: amazonProject.duration,
-            bullets: [
-                'Amazon Advertising API 연동 기반 데이터 수집 파이프라인 설계',
-                'Airflow 기반 광고 운영 자동화 구조 구현',
-                '자동화 도입으로 월 운영 공수 98% 절감',
-            ],
-        },
-        {
-            displayTitle: '그래프 기반 추천',
+            displayTitle: '공간-브랜드 그래프 기반 추천 PoC',
             role: retailGnnProject.role,
             period: retailGnnProject.duration,
             bullets: [

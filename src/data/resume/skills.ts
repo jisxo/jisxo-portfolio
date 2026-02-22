@@ -10,31 +10,37 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
     {
-        title: 'Data Architecture & Pipeline',
+        title: 'Data Pipeline & Architecture',
         icon: IconDatabase,
         color: 'blue',
         techStack: ['Python, SQL, Apache Airflow'],
         descriptions: [
-            'ETL/ELT 설계, DAG 의존성 관리',
-            '대용량 JSON 분할 처리'
+            'ETL/ELT 설계 및 DAG 의존성 관리',
+            '대용량 JSON 분할 처리 및 배치 최적화'
         ]
     },
     {
         title: 'Data Storage & Query',
         icon: IconChartBar,
         color: 'cyan',
-        techStack: ['PostgreSQL', 'Opensearch'],
+        techStack: ['PostgreSQL', 'OpenSearch', 'MinIO'],
+    },
+    {
+        title: 'Streaming & ML Data Handling',
+        icon: IconChartBar,
+        color: 'grape',
+        techStack: ['Kafka', 'Spark Streaming'],
         descriptions: [
-            'MinIO, AWS S3 연동'
+            '그래프 임베딩 학습 입력 데이터 구성'
         ]
     },
     {
         title: 'API & Serving',
         icon: IconDeviceDesktop,
         color: 'orange',
-        techStack: ['Django REST Framework, FastAPI'],
+        techStack: ['Django REST Framework', 'FastAPI'],
         descriptions: [
-            'Swagger 기반 API 명세'
+            'Swagger 기반 API 연동'
         ]
     },
     {

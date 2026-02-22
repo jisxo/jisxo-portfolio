@@ -9,10 +9,10 @@ export const personalInfo: PersonalInfo = {
     portfolioUrl: process.env.NEXT_PUBLIC_USER_PORTFOLIO_URL || 'portfolio-url.com'
 };
 
-export const resumeSummary = `클라우드 환경 전환을 고려한 데이터 플랫폼 설계 경험을 보유한 ML 데이터 엔지니어입니다.
-ETL/ELT 파이프라인을 설계하고 이기종 데이터를 단일 스키마로 표준화했습니다.
-라벨링 기준 관리 및 데이터 축적 체계를 운영하여 모델 개선을 위한 기반을 구축했습니다.
-Docker 기반 실행 환경과 API 연동 구조를 설계·구현했습니다.`;
+export const resumeSummary = `대용량 데이터 파이프라인 설계 및 운영 안정화 경험을 보유한 ML 데이터 엔지니어입니다.
+ETL 구조 설계와 스키마 표준화를 통해 데이터 정합성을 관리했습니다.
+의존성 제어 및 예외 처리 체계 개선으로 배치 신뢰성을 확보했습니다.
+라벨링 데이터 축적과 임베딩 기반 추천 PoC를 수행했습니다.`;
 
 export const heroData = {
     titleHighlight: 'End-to-End 파이프라인 엔지니어',
