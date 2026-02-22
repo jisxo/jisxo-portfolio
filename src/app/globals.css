@@ -12,8 +12,8 @@ body {
 
 @media print {
    @page {
-      margin: 21.2mm 21.2mm 10.6mm 21.2mm;
-      /* 80px Top, 80px Sides, 40px Bottom */
+      margin: 18mm;
+      /* A4 인쇄 여백 권장 범위(15-20mm) */
       size: A4;
    }
 
@@ -78,6 +78,12 @@ body {
       min-height: auto !important;
       background: white !important;
       box-sizing: border-box !important;
+   }
+
+   /* Section-based pagination */
+   .resume-section {
+      page-break-inside: avoid !important;
+      break-inside: avoid-page !important;
    }
 
    /* Mantine Paper overrides specifically */
