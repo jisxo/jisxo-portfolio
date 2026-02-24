@@ -1,8 +1,12 @@
 'use client';
 
+import React from 'react';
 import { Card, Image, Text, Badge, Button, Group, Modal, Stack, Title, List, ThemeIcon, Box, Paper, SimpleGrid, Center } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconExternalLink, IconListCheck, IconBolt, IconTrophy, IconUser, IconCalendar, IconApps, IconNetwork, IconArrowDown } from '@tabler/icons-react';
+import ReactMarkdown from 'react-markdown';
+import type { Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import classes from './ProjectCard.module.css';
 
 interface StarContent {
@@ -29,7 +33,132 @@ interface ProjectCardProps {
     star?: StarContent;
     duration?: string;
     contributions?: string[];
+    evidence?: {
+        title: string;
+        slug: string;
+    }[];
 }
+
+function MermaidEvidence({ code }: { code: string }) {
+    const [svg, setSvg] = React.useState<string | null>(null);
+    const [fallbackCode, setFallbackCode] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        let mounted = true;
+
+        const renderMermaid = async () => {
+            try {
+                const mermaidModule = await import('mermaid');
+                const mermaid = mermaidModule.default;
+                mermaid.initialize({
+                    startOnLoad: false,
+                    securityLevel: 'loose',
+                    theme: 'default',
+                });
+
+                await mermaid.parse(code);
+                const renderId = `evidence-mermaid-${Math.random().toString(36).slice(2, 10)}`;
+                const { svg } = await mermaid.render(renderId, code);
+
+                if (!mounted) return;
+                setSvg(svg);
+                setFallbackCode(null);
+            } catch {
+                if (mounted) {
+                    setSvg(null);
+                    setFallbackCode(code);
+                }
+            }
+        };
+
+        renderMermaid();
+
+        return () => {
+            mounted = false;
+        };
+    }, [code]);
+
+    if (fallbackCode !== null) {
+        return (
+            <Text component="pre" size="sm" className={classes.evidencePre}>
+                {'```mermaid\n' + fallbackCode + '\n```'}
+            </Text>
+        );
+    }
+
+    if (svg === null) {
+        return (
+            <Text size="sm" c="dimmed">
+                다이어그램 렌더링 중입니다...
+            </Text>
+        );
+    }
+
+    return (
+        <Box className={classes.evidenceMermaid}>
+            <div dangerouslySetInnerHTML={{ __html: svg }} />
+        </Box>
+    );
+}
+
+const markdownComponents: Components = {
+    h1: ({ children }) => <Text component="h1" size="lg" fw={700} mb={8}>{children}</Text>,
+    h2: ({ children }) => <Text component="h2" size="md" fw={700} mb={6}>{children}</Text>,
+    h3: ({ children }) => <Text component="h3" size="sm" fw={700} mb={6}>{children}</Text>,
+    p: ({ children }) => <Text size="sm" lh={1.6} mb={8}>{children}</Text>,
+    ul: ({ children }) => <Box component="ul" style={{ paddingLeft: '18px', margin: '8px 0' }}>{children}</Box>,
+    ol: ({ children }) => <Box component="ol" style={{ paddingLeft: '18px', margin: '8px 0' }}>{children}</Box>,
+    li: ({ children }) => <Text component="li" size="sm" lh={1.6} style={{ marginBottom: '4px' }}>{children}</Text>,
+    table: ({ children }) => (
+        <Box className={classes.tableWrap}>
+            <table className={classes.evidenceTable}>{children}</table>
+        </Box>
+    ),
+    thead: ({ children }) => <thead>{children}</thead>,
+    tbody: ({ children }) => <tbody>{children}</tbody>,
+    tr: ({ children }) => <tr>{children}</tr>,
+    th: ({ children }) => (
+        <th className={classes.evidenceTh}>
+            {children}
+        </th>
+    ),
+    td: ({ children }) => (
+        <td className={classes.evidenceTd}>
+            {children}
+        </td>
+    ),
+    hr: () => <Box style={{ borderTop: '1px solid var(--mantine-color-default-border)', margin: '10px 0' }} />,
+    code: ({ className, children }) => {
+        const raw = String(children ?? '').replace(/\n$/, '');
+        const languageMatch = /language-(\w+)/.exec(className || '');
+
+        if (languageMatch?.[1] === 'mermaid') {
+            return <MermaidEvidence code={raw} />;
+        }
+
+        const isInlineCode = !className && !raw.includes('\n');
+
+        if (isInlineCode) {
+            return (
+                <Text
+                    span
+                    component="code"
+                    size="sm"
+                    className={classes.evidenceInlineCode}
+                >
+                    {raw}
+                </Text>
+            );
+        }
+
+        return (
+            <Text component="pre" size="sm" className={classes.evidencePre}>
+                {raw}
+            </Text>
+        );
+    },
+    pre: ({ children }) => <>{children}</>,
+};
 
 // Helper to render bold text from markdown-like syntax (**text**)
 const normalizeLineBreaks = (text: string) => text.replace(/\\n/g, '\n');
@@ -65,19 +194,125 @@ const renderOverviewContent = (content: string | string[]) => {
     );
 };
 
-export function ProjectCard({ title, description, overview, image, domain, role, images, tags, githubUrl, demoUrl, star, duration, contributions }: ProjectCardProps) {
+export function ProjectCard({ title, description, overview, image, domain, role, images, tags, githubUrl, demoUrl, star, duration, contributions, evidence }: ProjectCardProps) {
     const [opened, { open, close }] = useDisclosure(false);
+    const [evidenceOpened, { open: openEvidenceModal, close: closeEvidenceModal }] = useDisclosure(false);
+    const [selectedEvidenceTitle, setSelectedEvidenceTitle] = React.useState('');
+    const [evidenceContent, setEvidenceContent] = React.useState('');
+    const [inlineEvidenceContent, setInlineEvidenceContent] = React.useState<Record<string, string>>({});
+    const [inlineEvidenceError, setInlineEvidenceError] = React.useState<string | null>(null);
+    const [isEvidenceLoading, setIsEvidenceLoading] = React.useState(false);
+    const [evidenceError, setEvidenceError] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        if (!evidence || evidence.length === 0) return;
+
+        let mounted = true;
+
+        const preloadEvidence = async () => {
+            try {
+                const entries = await Promise.all(
+                    evidence.map(async (item) => {
+                        const response = await fetch(`/api/evidence/${item.slug}`);
+                        if (!response.ok) {
+                            throw new Error(`evidence_preload_failed_${item.slug}`);
+                        }
+
+                        const markdown = await response.text();
+                        return [item.slug, markdown] as const;
+                    })
+                );
+
+                if (!mounted) return;
+                setInlineEvidenceContent(Object.fromEntries(entries));
+                setInlineEvidenceError(null);
+            } catch {
+                if (!mounted) return;
+                setInlineEvidenceError('일부 증거 문서를 불러오지 못했습니다.');
+            }
+        };
+
+        preloadEvidence();
+
+        return () => {
+            mounted = false;
+        };
+    }, [evidence]);
+
+    const handleOpenEvidence = async (item: { title: string; slug: string }) => {
+        setSelectedEvidenceTitle(item.title);
+        setEvidenceError(null);
+        openEvidenceModal();
+
+        const preloaded = inlineEvidenceContent[item.slug];
+        if (preloaded) {
+            setEvidenceContent(preloaded);
+            setIsEvidenceLoading(false);
+            return;
+        }
+
+        setEvidenceContent('');
+        setIsEvidenceLoading(true);
+
+        try {
+            const response = await fetch(`/api/evidence/${item.slug}`);
+            if (!response.ok) {
+                throw new Error('evidence_fetch_failed');
+            }
+            const markdown = await response.text();
+            setEvidenceContent(markdown);
+        } catch {
+            setEvidenceError('증거 문서를 불러오지 못했습니다.');
+        } finally {
+            setIsEvidenceLoading(false);
+        }
+    };
+
+    const handleCloseProjectModal = () => {
+        closeEvidenceModal();
+        close();
+    };
 
     return (
         <>
             <Modal
+                opened={evidenceOpened}
+                onClose={closeEvidenceModal}
+                title={<Text fw={800} size="lg">{selectedEvidenceTitle}</Text>}
+                size="lg"
+                centered
+                padding="lg"
+                radius="md"
+                zIndex={310}
+            >
+                <Paper withBorder radius="md" p="md" bg="var(--mantine-color-body)">
+                    {isEvidenceLoading && (
+                        <Text size="sm" c="dimmed">문서를 불러오는 중입니다...</Text>
+                    )}
+                    {!isEvidenceLoading && evidenceError && (
+                        <Text size="sm" c="red.6">{evidenceError}</Text>
+                    )}
+                    {!isEvidenceLoading && !evidenceError && (
+                        <Box style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                {evidenceContent}
+                            </ReactMarkdown>
+                        </Box>
+                    )}
+                </Paper>
+            </Modal>
+
+            <Modal
                 opened={opened}
-                onClose={close}
+                onClose={handleCloseProjectModal}
+                closeOnEscape={!evidenceOpened}
+                closeOnClickOutside={!evidenceOpened}
                 title={<Text fw={900} size="xl" variant="gradient" gradient={{ from: 'blue', to: 'cyan', deg: 90 }}>{title}</Text>}
                 size="xl"
                 centered
                 padding="xl"
                 radius="lg"
+                zIndex={300}
             >
                 <Paper shadow="sm" radius="md" mb="xl" style={{ overflow: 'hidden' }}>
                     <Image src={image} height={420} alt={title} fit="cover" bg="#101113" />
@@ -180,6 +415,72 @@ export function ProjectCard({ title, description, overview, image, domain, role,
                                 <List.Item key={idx} fw={500} style={{ wordBreak: 'keep-all' }}>{item}</List.Item>
                             ))}
                         </List>
+                    </Paper>
+                )}
+
+                {evidence && evidence.length > 0 && (
+                    <Paper
+                        mb="xl"
+                        p="lg"
+                        radius="md"
+                        withBorder
+                        className={classes.screenOnly}
+                        style={{ backgroundColor: 'transparent', borderStyle: 'solid', borderColor: 'var(--mantine-color-default-border)' }}
+                    >
+                        <Title order={4} mb="md" c="blue.7" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <IconExternalLink size={20} /> Evidence
+                        </Title>
+                        <Stack gap={8}>
+                            {evidence.map((item) => (
+                                <Box key={item.slug}>
+                                    <Button
+                                        variant="subtle"
+                                        color="blue"
+                                        justify="flex-start"
+                                        rightSection={<IconExternalLink size={14} />}
+                                        onClick={() => handleOpenEvidence(item)}
+                                        styles={{
+                                            inner: { justifyContent: 'space-between', width: '100%' },
+                                            label: { fontWeight: 600 },
+                                        }}
+                                    >
+                                        {item.title}
+                                    </Button>
+                                </Box>
+                            ))}
+                        </Stack>
+                    </Paper>
+                )}
+
+                {evidence && evidence.length > 0 && (
+                    <Paper
+                        mb="xl"
+                        p="lg"
+                        radius="md"
+                        withBorder
+                        className={classes.printOnly}
+                        style={{ backgroundColor: 'transparent', borderStyle: 'solid', borderColor: 'var(--mantine-color-default-border)' }}
+                    >
+                        <Title order={4} mb="md" c="blue.7" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <IconExternalLink size={20} /> Evidence (Print)
+                        </Title>
+                        {inlineEvidenceError && (
+                            <Text size="sm" c="red.6" mb="sm">{inlineEvidenceError}</Text>
+                        )}
+                        <Stack gap="lg">
+                            {evidence.map((item) => (
+                                <Box key={`print-evidence-${item.slug}`} className={classes.printEvidenceBlock}>
+                                    <Text fw={700} size="sm" mb={6}>{item.title}</Text>
+                                    {inlineEvidenceContent[item.slug] ? (
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                            {inlineEvidenceContent[item.slug]}
+                                        </ReactMarkdown>
+                                    ) : (
+                                        <Text size="sm" c="dimmed">문서를 불러오는 중입니다...</Text>
+                                    )}
+                                </Box>
+                            ))}
+                        </Stack>
                     </Paper>
                 )}
 

@@ -1,0 +1,664 @@
+.page {
+    --space-block: 18px;
+    --space-section: 18px;
+    --space-title-body: 12px;
+    --space-title-meta: 6px;
+    --space-bullet: 6px;
+    --space-overview: 8px;
+    --space-overview-label-gap: 4px;
+    --space-project-block: 16px;
+    --space-half: 10px;
+    --space-limit-indent: 10px;
+    --space-evidence-doc: 10px;
+    --space-evidence-title-gap: 6px;
+    --space-table-cell-x: 8px;
+    --space-table-cell-y: 6px;
+    --sheet-min-height-screen: 274mm;
+    --sheet-min-height-print: 261mm;
+    --header-offset-y: 0px;
+    --footer-offset-y: 0px;
+    --line-muted: var(--mantine-color-default-border);
+    min-height: 100vh;
+    padding: 18px 14px 32px;
+    background: var(--mantine-color-body);
+    color: var(--mantine-color-text);
+}
+
+.wrap {
+    width: min(210mm, 100%);
+    margin: 0 auto;
+}
+
+.screenOnly {
+    display: block;
+}
+
+.headerCard {
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    background: var(--mantine-color-body);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.actionBtn {
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sheet {
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: 12px;
+    background: var(--mantine-color-body);
+    padding: 10mm 10mm 8mm;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    min-height: var(--sheet-min-height-screen);
+    display: flex;
+    flex-direction: column;
+}
+
+.sheet:last-child {
+    margin-bottom: 0;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    border-bottom: 1px solid var(--line-muted);
+    padding-bottom: 4px;
+    margin-bottom: var(--space-section);
+}
+
+.docHeaderTitle,
+.docHeaderIdentity {
+    font-size: 10.5px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--mantine-color-dimmed);
+    white-space: nowrap;
+}
+
+.docHeaderTitle {
+    letter-spacing: 0.01em;
+}
+
+.pageTitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.headerTag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mantine-color-dimmed);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+
+.block {
+    margin-top: var(--space-block);
+}
+
+.sheetBody {
+    margin-top: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.projectSection {
+    margin-top: var(--space-section);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.projectHeader {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.projectTitleLine {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.projectMetaLine {
+    margin: var(--space-title-meta) 0 0;
+    font-size: 11px;
+    line-height: 1.45;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+}
+
+.projectMetaLine span {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.projectBlocks {
+    margin-top: var(--space-section);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-project-block);
+}
+
+.projectBlock {
+    margin: 0;
+}
+
+.blockTitle {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.sectionHeading {
+    margin: 0;
+    font-weight: 700;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--line-muted);
+}
+
+.blockBody {
+    margin-top: var(--space-title-body);
+}
+
+.sectionTitle {
+    margin: 4px 0 4px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.overviewGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-overview);
+}
+
+.overviewItem {
+    border: 1px solid var(--line-muted);
+    border-radius: 8px;
+    padding: 6px 8px;
+}
+
+.overviewLabel {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--line-muted);
+    padding-bottom: var(--space-overview-label-gap);
+}
+
+.overviewBody {
+    margin-top: var(--space-overview-label-gap);
+}
+
+.overviewBullets {
+    padding-left: 16px;
+}
+
+.bullets {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.bullets li {
+    margin-bottom: var(--space-bullet);
+    line-height: 1.4;
+    font-size: 10.8px;
+}
+
+.bullets li:last-child {
+    margin-bottom: 0;
+}
+
+.limitationsBlock {
+    margin-top: 0;
+}
+
+.limitationsBox {
+    border-left: 1px solid var(--line-muted);
+    padding-left: var(--space-limit-indent);
+    margin-top: 0;
+}
+
+.limitationsList {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.evidenceList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-evidence-doc);
+}
+
+.evidenceItem {
+    border-top: 1px solid var(--line-muted);
+    padding-top: var(--space-evidence-title-gap);
+}
+
+.evidenceTitle {
+    margin: 0 0 var(--space-evidence-title-gap);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.evidenceEmpty {
+    margin: 0;
+    font-size: 10.8px;
+    line-height: 1.4;
+}
+
+.evidenceMarkdown {
+    font-size: 10.8px;
+    line-height: 1.45;
+}
+
+.evidenceMarkdown :global(h1),
+.evidenceMarkdown :global(h2),
+.evidenceMarkdown :global(h3),
+.evidenceMarkdown :global(h4),
+.evidenceMarkdown :global(h5),
+.evidenceMarkdown :global(h6) {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.evidenceMarkdown :global(p) {
+    margin: 0 0 6px;
+}
+
+.evidenceMarkdown :global(ul),
+.evidenceMarkdown :global(ol) {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.evidenceMarkdown :global(li) {
+    margin-bottom: var(--space-bullet);
+}
+
+.evidenceMarkdown :global(li:last-child) {
+    margin-bottom: 0;
+}
+
+.evidenceTableWrap {
+    overflow-x: auto;
+    margin: 6px 0;
+}
+
+.evidenceTableWrap .evidenceTable {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line-muted);
+}
+
+.evidenceTableWrap .evidenceTh,
+.evidenceTableWrap .evidenceTd {
+    border: 1px solid var(--line-muted);
+    padding: var(--space-table-cell-y) var(--space-table-cell-x);
+    text-align: left;
+    vertical-align: top;
+}
+
+.evidenceTableWrap .evidenceTh {
+    font-weight: 700;
+    background: rgba(127, 127, 127, 0.05);
+}
+
+.evidenceMarkdown .evidencePre {
+    margin: 6px 0;
+    padding: 6px 8px 6px 12px;
+    border: none;
+    border-left: 2px solid var(--line-muted);
+    border-radius: 0;
+    background: transparent;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.45;
+    font-family: inherit;
+    overflow-x: auto;
+}
+
+.evidenceMarkdown .evidenceInlineCode {
+    border: 1px solid var(--line-muted);
+    border-radius: 3px;
+    padding: 0 3px;
+    font-family: inherit;
+}
+
+.halfGrid {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: var(--space-half);
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.halfSection {
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.halfPageSheet {
+    display: flex;
+    flex-direction: column;
+}
+
+.halfBody {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.halfProjectSection {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+}
+
+.halfProjectSection .projectBlocks {
+    flex: 1 1 auto;
+}
+
+.pageFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--line-muted);
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.footerPage,
+.footerIdentity {
+    font-size: 11px;
+    color: var(--mantine-color-dimmed);
+    white-space: nowrap;
+}
+
+.sheet :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line-muted);
+    margin-top: 6px;
+}
+
+.sheet :global(th),
+.sheet :global(td) {
+    border: 1px solid var(--line-muted);
+    padding: var(--space-table-cell-y) var(--space-table-cell-x);
+    text-align: left;
+    vertical-align: top;
+}
+
+.sheet :global(th) {
+    font-weight: 700;
+}
+
+.sheet :global(thead th) {
+    border-bottom: 1px solid var(--line-muted);
+}
+
+.sheet :global(pre) {
+    border: 1px solid var(--line-muted);
+    border-radius: 6px;
+    padding: 8px;
+    overflow-x: auto;
+    margin-top: 6px;
+    white-space: pre-wrap;
+}
+
+.sheet :global(code) {
+    border: 1px solid var(--line-muted);
+    border-radius: 4px;
+    padding: 0 3px;
+}
+
+.sheet :global(pre code) {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+@media print {
+    .screenOnly {
+        display: none !important;
+    }
+
+    .page {
+        --space-block: 8px;
+        --space-section: 8px;
+        --space-title-body: 4px;
+        --space-title-meta: 3px;
+        --space-bullet: 1px;
+        --space-project-block: 6px;
+        --space-evidence-doc: 6px;
+        --space-evidence-title-gap: 3px;
+        --print-content-height: 261mm; /* A4 297mm - (18mm * 2) */
+        --print-header-lift: 6mm;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
+    }
+
+    .wrap {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .sheet {
+        border: none !important;
+        border-radius: 0 !important;
+        background: #fff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto;
+        min-height: var(--print-content-height);
+        max-height: none;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .sheetBody {
+        display: block;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: visible;
+    }
+
+    .projectBlock,
+    .overviewItem,
+    .limitationsBox,
+    .halfSection {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .pageFooter {
+        margin-top: auto !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .sheet,
+    .sheet * {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+        text-shadow: none !important;
+    }
+
+    .pageHeader,
+    .pageFooter {
+        border-bottom-color: #000 !important;
+        border-top-color: #000 !important;
+    }
+
+    .halfSection,
+    .overviewItem,
+    .sheet :global(table),
+    .sheet :global(th),
+    .sheet :global(td),
+    .sheet :global(pre),
+    .sheet :global(code),
+    .evidenceItem,
+    .evidenceTable,
+    .evidenceTh,
+    .evidenceTd,
+    .evidencePre,
+    .evidenceInlineCode {
+        border-color: #000 !important;
+    }
+
+    .sheet:last-child {
+        page-break-after: auto;
+        break-after: auto;
+    }
+
+    .pageTitle {
+        font-size: 15pt;
+        line-height: 1.2;
+    }
+
+    .projectTitleLine,
+    .projectMetaLine {
+        font-size: 10.6pt;
+    }
+
+    .pageHeader {
+        padding-bottom: 2px;
+        margin-top: 0;
+        margin-bottom: var(--space-section);
+    }
+
+    .pageFooter {
+        padding-top: 4px;
+        margin-top: auto !important;
+    }
+
+    .blockTitle {
+        font-size: 11.8pt;
+        margin: 0;
+    }
+
+    .sectionHeading {
+        padding-bottom: 2px;
+    }
+
+    .sectionTitle {
+        font-size: 11pt;
+        margin: 2px 0 2px;
+    }
+
+    .bullets li {
+        font-size: 10.5pt;
+        line-height: 1.22;
+        margin-bottom: var(--space-bullet);
+    }
+
+    .bullets li::marker {
+        color: #000 !important;
+    }
+
+    .overviewGrid {
+        gap: 4px;
+    }
+
+    .overviewItem {
+        padding: 4px 6px;
+    }
+
+    .overviewLabel {
+        padding-bottom: 2px;
+    }
+
+    .overviewBody {
+        margin-top: 2px;
+    }
+
+    .halfGrid {
+        gap: 3mm;
+    }
+
+    .halfSection {
+        padding: 5px 7px;
+    }
+
+    .halfProjectSection .projectBlocks {
+        margin-top: var(--space-section);
+        gap: var(--space-project-block);
+    }
+
+    .halfProjectSection .overviewGrid {
+        gap: 3px;
+    }
+
+    .halfProjectSection .overviewItem {
+        padding: 3px 5px;
+    }
+
+    .halfProjectSection .bullets li {
+        line-height: 1.18;
+        margin-bottom: var(--space-bullet);
+    }
+
+    .evidenceMarkdown {
+        font-size: 10.3pt;
+        line-height: 1.22;
+    }
+
+    .evidenceTitle {
+        margin-bottom: var(--space-evidence-title-gap);
+    }
+
+    .evidenceTableWrap .evidenceTh {
+        background: transparent !important;
+    }
+
+    .docHeaderTitle,
+    .docHeaderIdentity,
+    .footerPage,
+    .footerIdentity {
+        color: #000 !important;
+    }
+}
