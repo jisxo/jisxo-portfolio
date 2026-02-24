@@ -36,4 +36,22 @@ export const securityPlatformPhasedProject: Project = {
     '대용량 데이터 분할 처리로 메모리 병목 해결',
     '이기종 로그 통합을 위한 표준 스키마 설계',
   ],
+  evidence: [
+    {
+      title: 'Canonical Schema v1 (Mail/Attachment)',
+      slug: 'canonical-schema-v1',
+    },
+    {
+      title: 'Parsing/Normalization Pipeline',
+      slug: 'parsing-normalization-pipeline',
+    },
+    {
+      title: 'Exception Handling Rules',
+      slug: 'exception-handling-rules',
+    },
+    {
+      title: 'OOM Mitigation (Record-level JSON Chunking)',
+      slug: 'oom-mitigation-record-level-json-chunking',
+    },
+  ],
 };

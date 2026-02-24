@@ -37,4 +37,18 @@ export const hiddenSpotMinioProject: Project = {
     '수집·정제·가공 단계를 분리한 파이프라인 구성',
     '분석 결과를 서비스 계층으로 연결하는 전체 흐름 구현',
   ],
+  evidence: [
+    {
+      title: '01_serving_api.md (Serving API Contract)',
+      slug: 'hidden-spot-serving-api',
+    },
+    {
+      title: '02_async_jobs.md (Async Job Flow)',
+      slug: 'hidden-spot-async-jobs',
+    },
+    {
+      title: '03_datalake_layout.md (Data Lake Layout)',
+      slug: 'hidden-spot-datalake-layout',
+    },
+  ],
 };
