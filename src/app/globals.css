@@ -100,4 +100,35 @@ body {
       height: 0 !important;
       margin: 0 !important;
    }
+
+   /* Modal print fix: prevent fixed-position viewport from being repeated on every page */
+   .mantine-Modal-root,
+   .mantine-Modal-inner {
+      position: static !important;
+      inset: auto !important;
+      transform: none !important;
+      display: block !important;
+      padding: 0 !important;
+      height: auto !important;
+      overflow: visible !important;
+   }
+
+   .mantine-Modal-overlay {
+      display: none !important;
+   }
+
+   .mantine-Modal-content {
+      box-shadow: none !important;
+      border: none !important;
+      max-height: none !important;
+      height: auto !important;
+      overflow: visible !important;
+      width: auto !important;
+   }
+
+   .mantine-Modal-body {
+      max-height: none !important;
+      height: auto !important;
+      overflow: visible !important;
+   }
 }

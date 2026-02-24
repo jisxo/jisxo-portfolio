@@ -4,6 +4,11 @@ export interface StarContent {
     result: string;
 }
 
+export interface ProjectEvidence {
+    title: string;
+    slug: string;
+}
+
 export interface Project {
     title: string;
     description: string;
@@ -20,4 +25,5 @@ export interface Project {
     star?: StarContent;
     role?: string;
     contributions?: string[];
+    evidence?: ProjectEvidence[];
 }
