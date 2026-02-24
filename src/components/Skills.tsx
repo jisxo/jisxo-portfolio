@@ -4,10 +4,10 @@ import { Container, Title, Text, SimpleGrid, Card, Group, Badge, ThemeIcon, rem,
 import { IconDatabase, IconServer, IconChartBar, IconDeviceDesktop } from '@tabler/icons-react';
 import classes from './Skills.module.css';
 
-import { skillCategories } from '@/data/resume/skills';
+import { homeSkillCategories } from '@/data/homeContent';
 
 export function Skills() {
-    const skillsData = skillCategories;
+    const skillsData = homeSkillCategories;
     const cards = skillsData.map((category) => (
         <Card key={category.title} shadow="sm" radius="md" withBorder className={classes.card} padding="lg">
             <Group justify="space-between" mb="md">

@@ -3,16 +3,17 @@
 import { Container, Title, Text, Timeline, ThemeIcon, Card, Group, Badge, Stack } from '@mantine/core';
 import { IconBriefcase, IconSchool } from '@tabler/icons-react';
 import { resumeData } from '@/data/resume';
+import { homeSummary } from '@/data/homeContent';
 
 export function AboutSection() {
-    const { summary, experience, education, certifications } = resumeData;
+    const { experience, education, certifications } = resumeData;
 
     return (
         <Container size="lg" py="xl" id="about">
             <Title order={1} mb="lg">About Me</Title>
 
             <Text size="lg" mb="xl" lh={1.8} style={{ whiteSpace: 'pre-line' }}>
-                {summary}
+                {homeSummary}
             </Text>
 
             <Title order={2} mb="lg" mt={50}>Experience & Education</Title>

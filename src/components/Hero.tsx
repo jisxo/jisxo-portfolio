@@ -1,8 +1,7 @@
 'use client';
 
 import { Container, Title, Text, Button, Group } from '@mantine/core';
-import { siteConfig } from '@/data/site';
-import { heroData } from '@/data/resume/about';
+import { homeHeroData } from '@/data/homeContent';
 import classes from './Hero.module.css';
 
 export function Hero() {
@@ -13,16 +12,16 @@ export function Hero() {
                     <div className={classes.content}>
                         <Title className={classes.title}>
                             데이터 흐름으로 비즈니스 가치를 만드는<br />
-                            <span className={classes.highlight}>{heroData.titleHighlight}</span>
+                            <span className={classes.highlight}>{homeHeroData.titleHighlight}</span>
                             정지서입니다
                         </Title>
 
                         <Text size="xl" mt={30} className={classes.description}>
-                            {heroData.description}
+                            {homeHeroData.description}
                         </Text>
 
                         <Text size="lg" mt="md" c="dimmed" className={classes.subDescription}>
-                            {heroData.subDescription}
+                            {homeHeroData.subDescription}
                         </Text>
 
                         <Group mt={30}>
